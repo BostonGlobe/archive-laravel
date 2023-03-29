@@ -20,7 +20,7 @@ class Article
     
         $html = file_get_contents($filePath);
 
-        return cache()->remember($path, 3600, function () use ($html) {
+        return cache()->remember($path, 120, function () use ($html) {
             return self::reformatFile($html);
         });
     }
