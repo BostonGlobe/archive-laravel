@@ -13,12 +13,17 @@ use App\Models\Article;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+ 
 Route::get('/', function () {
     return view('welcome');
 });
 
 Route::get('/{path}', function ($path) {
+    $result = Article::fetchFormattedHtmlFile($path);
 
-    return Article::findHtmlFile($path);
-})->where('path', '[a-zA-Z0-9\/\-_]+');
+    if ($result === false) {
+        abort(404);
+    }
+
+    return $result;
+})->where('path', '[a-zA-Z0-9\/\-_\.]+');
