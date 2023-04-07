@@ -3,70 +3,109 @@
 namespace App\Models;
 
 use DOMDocument;
+use Illuminate\Contracts\Container\BindingResolutionException;
+use Illuminate\Support\Facades\View;
 
 class Article
 {
-    public static function findHtmlFile($path)
+    /**
+     * Resolve the HTML file path, making sure it ends with "/index.html".
+     *
+     * @param string $path
+     * @return string The resolved HTML file path.
+     */
+    private static function resolveHtmlFilePath($path)
     {
         if (! str_ends_with($path, '/index.html')) {
             $path .= '/index.html';
-        };
-    
-        $filePath = resource_path('/articles/' . $path);
-        
-        if (!file_exists($filePath)) {
-            abort(404);
         }
-    
+
+        return resource_path('/html/' . $path);
+    }
+
+    /**
+     * Fetch the contents of the HTML file, applying some formatting.
+     *
+     * The contents are cached for 2 minutes.
+     *
+     * @param string $path
+     * @return string|false The formatted HTML file contents, or false if the file does not exist.
+     */
+    public static function fetchFormattedHtmlFile($path)
+    {
+        $filePath = self::resolveHtmlFilePath($path);
+
+        if (! file_exists($filePath)) {
+            return false;
+        }
+
         $html = file_get_contents($filePath);
 
-        return cache()->remember($path, 120, function () use ($html) {
+        return cache()->remember($path, 1, function () use ($html) {
             return self::reformatFile($html);
         });
     }
 
+    /**
+     * Reformat the content from the old file and insert it into an HTML5 template and remove obsolete elements.
+     *
+     * @param mixed $html
+     * @return string The formatted HTML file contents.
+     */
     private static function reformatFile($html)
     {
-        // converts all special characters to utf-8
+        // Convert all special characters to utf-8
         $html = mb_convert_encoding($html, 'HTML-ENTITIES', 'UTF-8');
 
-        // creating new document
+        // Create a new document
         $doc = new DOMDocument('1.0', 'utf-8');
 
-        //turning off some errors
+        // Turn off some errors
         libxml_use_internal_errors(true);
 
         // Load the content without adding enclosing html/body tags.
         // Also no doctype declaration.
-        $doc->LoadHTML($html, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+        $doc->loadHTML($html, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
 
-        // Remove the shareThis.
-        $shareThis = $doc->getElementById('toolsShareThis');
-        $shareThis->parentNode->removeChild($shareThis);
-
-        // Remove YahooB.
-        $toolsYahooB = $doc->getElementById('toolsYahooB');
-        $toolsYahooB->parentNode->removeChild($toolsYahooB);
-
-        // Remove scripts
-        $scripts = $doc->getElementsByTagName('script');
-        foreach ($scripts as $script) {
-            $script->parentNode->removeChild($script);
+        $idsToRemove = [
+            'toolsShareThis',
+            'toolsYahooB',
+            'bdc_emailWidget',
+            'bdc_shareButtons',
+            'tools'
+        ];
+        foreach ($idsToRemove as $id) {
+            $element = $doc->getElementById($id);
+            if ($element !== null) {
+                $element->parentNode->removeChild($element);
+            }
         }
-
+       
         // Extract the article text
         $articleText = $doc->getElementById('Col1');
 
+        if ($articleText === null) {
+            $articleText = $doc->getElementById('articleContent');
+        }
+
+        $scripts = $articleText->getElementsByTagName('script');
+
+        while ($script = $scripts->item(0)) {
+            $script->parentNode->removeChild($script);
+        }
+
+        $forms = $articleText->getElementsByTagName('form');
+
+        while ($form = $forms->item(0)) {
+            $form->parentNode->removeChild($form);
+        }
+
+        $h1 = $articleText->getElementsByTagName('h1');
+
         // Load the template into a new document.
-        $template = file_get_contents(resource_path('/views/template.html'));
-        $updatedDoc = new DOMDocument('1.0', 'utf-8');
-        $updatedDoc->loadHTML($template);
-
-        // Add the article text to the template.
-        $content = $updatedDoc->getElementById('content');
-        $content->appendChild($updatedDoc->importNode($articleText, true));
-
-        // Return the article in the template.
-        return $updatedDoc->saveHTML();
+        return View::make('template', [
+            'content' => $doc->saveHTML($articleText),
+            'title' => $h1[0]->nodeValue,
+        ])->render();
     }
 }
