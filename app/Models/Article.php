@@ -66,21 +66,23 @@ class Article
         // Load the content without adding enclosing html/body tags.
         // Also no doctype declaration.
         $doc->loadHTML($html, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
-
-        $idsToRemove = [
-            'toolsShareThis',
-            'toolsYahooB',
-            'bdc_emailWidget',
-            'bdc_shareButtons',
-            'tools'
-        ];
-        foreach ($idsToRemove as $id) {
-            $element = $doc->getElementById($id);
-            if ($element !== null) {
-                $element->parentNode->removeChild($element);
+        $metaTags = $doc->getElementsByTagName('meta');
+        $description = '';
+        foreach ($metaTags as $metaTag) {
+            if ($metaTag->getAttribute('http-equiv') == 'Description') {
+                $description = $metaTag->getAttribute('content');
+                break;
             }
         }
-       
+        if ($description == '') {
+            foreach ($metaTags as $metaTag) {
+                if ($metaTag->getAttribute('name') == 'Description') {
+                    $description = $metaTag->getAttribute('content');
+                    break;
+                }
+            }
+        }
+        
         // Extract the article text
         $articleText = $doc->getElementById('Col1');
 
@@ -88,24 +90,29 @@ class Article
             $articleText = $doc->getElementById('articleContent');
         }
 
+        if ($articleText === null) {
+            abort(404);
+        }
+        // Remove all script tags in the article text
         $scripts = $articleText->getElementsByTagName('script');
-
+        // Yes this is a non-standard loop, but it's a good way to remove all elements from a DOMNodeList.
         while ($script = $scripts->item(0)) {
             $script->parentNode->removeChild($script);
         }
 
+        // Remove all form tags in the article text, using the same method as above.
         $forms = $articleText->getElementsByTagName('form');
-
         while ($form = $forms->item(0)) {
             $form->parentNode->removeChild($form);
         }
 
         $h1 = $articleText->getElementsByTagName('h1');
-
+        
         // Load the template into a new document.
         return View::make('template', [
-            'content' => $doc->saveHTML($articleText),
             'title' => $h1[0]->nodeValue,
+            'content' => $doc->saveHTML($articleText),
+            'description' => $description
         ])->render();
     }
 }

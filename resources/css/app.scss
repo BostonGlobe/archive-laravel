@@ -19,11 +19,6 @@ ul {
 	}
 }
 
-#footToolsNav {
-	li:nth-child(even) {
-		display: none;
-	}
-}
 
 .hide,
 #sharetoolContainer,
@@ -41,11 +36,16 @@ nav {
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: space-between;
-		background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#f2f2f2));
+
 
 		a {
 			line-height: 2;
 			padding: 0 1em;
+			background: -webkit-gradient(linear, left top, left bottom, from($blue-100), to($blue-200));
+
+			&:hover {
+				background: -webkit-gradient(linear, left top, left bottom, from($blue-200), to($blue-300));
+			}
 		}
 	}
 }

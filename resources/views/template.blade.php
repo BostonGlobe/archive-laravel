@@ -5,12 +5,9 @@
     <title>{{ $title }} &mdash; Boston.com Archive</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Teradyne Inc. of North Reading is cutting 532 of its 3,800 employees worldwide, 
-        and imposing a 10 percent pay cut on the rest. Teradyne employs 1,055 people in Massachusetts, 
-        but the company did not say how many local workers will be cut.">
-    <link rel="icon" href="/favicon.ico" sizes="any">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="icon.png">
+    <meta name="description" content="{{ $description }}">
+    <link rel="icon" href="/favicon.png" sizes="any">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <meta name="theme-color" content="#fafafa">
     <!-- Scripts -->
     @vite(['resources/css/app.scss'])
@@ -52,7 +49,7 @@
                     </div>
                 </div>
             </div>
-            <div id="globalNavRedux">
+            <nav id="globalNavRedux">
                 <ul class="gnavContainer" id="nav">
                     <li id="ghome"><a href="http://www.boston.com/">Home</a></li>
                     <li id="gglobe"><a href="http://www.boston.com/bostonglobe">Today's Globe</a></li>
@@ -72,86 +69,85 @@
                 <ul id="sNav">
                     <li><a href="http://www.boston.com/business/technology/" id="secnav_technology">Technology</a></li>
                     <li><a href="http://www.boston.com/business/healthcare/" id="secnav_healthcare">Healthcare</a></li>
-                    <li><a href="http://finance.boston.com/boston?Page=MarketSummary" id="secnav_markets">Markets</a>
-                    </li>
-                    <li><a href="http://www.boston.com/business/personalfinance/" id="secnav_personalfinance">Personal
-                            finance</a></li>
+                    <li><a href="http://finance.boston.com/boston?Page=MarketSummary" id="secnav_markets">Markets</a></li>
+                    <li><a href="http://www.boston.com/business/personalfinance/" id="secnav_personalfinance">Personal finance</a></li>
                     <li><a href="http://www.boston.com/business/columnists/" id="secnav_columnists">Columnists</a></li>
                 </ul>
-            </div>
+            </nav>
             <div id="introad" class="adContainer"></div>
             <div id="billboardAd" class="adContainer"></div>
             <div id="pfHeader"><img src="http://cache.boston.com/universal/site_graphics/bcom_logo_printerfriendly.gif"
                     alt="boston.com"><span class="mssg">THIS STORY HAS BEEN FORMATTED FOR EASY PRINTING</span>
             </div>
-            <div id="content" class="article main">
-                {!! $content !!}
-                <div id="articleFootAd">
-                    <div id="articleBottomAd"></div>
+            <div class="row">
+                <div id="content" class="article main col-md-7">
+                    {!! $content !!}
+                    <div id="articleFootAd">
+                        <div id="articleBottomAd"></div>
+                    </div>
                 </div>
-            </div>
-            <div id="Col2">
-                <div id="Col2Top">
-                </div>
-                <div id="rightAd">
-                    <div class="advertisement">Advertisement</div>
-                    <div></div>
-                </div>
-                <div id="Col2LRCont">
-                    <div id="Col2L"></div>
-                    <div id="Col2R">
+                <div id="Col2" class="col-md-5">
+                    <div id="Col2Top">
+                    </div>
+                    <div id="rightAd">
+                        <div class="advertisement">Advertisement</div>
                         <div></div>
                     </div>
-                    <div id="mostPopular">
-                        <!--passthru-->
-                        <div class="hslice" id="mostpopular"><span class="entry-title" style="display:none;">Boston.com
-                                Most
-                                Emailed</span><a rel="entry-content"
-                                href="http://www.boston.com/partners/ieslice/mostpopular.html"
-                                style="display:none;">Subscribe
-                                to Slice</a><a rel="bookmark"
-                                href="http://www.boston.com/?camp=misc:on:mostpopslice:bookmark" target="_blank"
-                                style="display:none;">Bookmark Boston.com Most Emailed</a><span class="ttl"
-                                style="display:none;">120</span>
-                            <div id="mEmail">
-                                <h3 class="sectionHeader"><a
-                                        href="http://tools.boston.com/pass-it-on/popular?time=hour&p1=MEWell_See_Full_List">MOST
-                                        E-MAILED &raquo; </a></h3>
-                                <div class="dotted1px"></div>
-                                <!--passthru-->
-                                <ol class="linklist">
-                                    <li class="up"><a
-                                            href="http://www.boston.com/news/local/massachusetts/2014/07/03/report-warrant-issued-for-roggie-bar-owner/Ox0pVATBC6LgyIDkeUDu4J/story.html?p1=Well_MostPop_Emailed1">Report:
-                                            Warrant Issued for Roggie&#8217;s Bar Owner</a></li>
-                                    <li class="down"><a
-                                            href="http://www.boston.com/health/2014/07/03/map-greater-boston-farmers-markets/AIVWLgD8yfkcDiJW5I2HBM/story.html?p1=Well_MostPop_Emailed2">Map
-                                            of Greater Boston Farmers Markets</a></li>
-                                    <li class="up"><a
-                                            href="http://www.boston.com/entertainment/events/2014/07/03/boston-pops-concert-move-keeps-the-beach-boys-ditches-joey-mcintyre/GFiQ0kiRaLGES8xozSuoSJ/story.html?p1=Well_MostPop_Emailed3">Boston
-                                            Pops Concert Move Keeps the Beach Boys, Ditches Joey McIntyre</a></li>
-                                    <li class="down"><a
-                                            href="http://www.boston.com/news/opinion/2014/07/03/tried-out-those-new-solar-benches/4e2aqfpZKMImTjZI0j8aLM/story.html?p1=Well_MostPop_Emailed4">We
-                                            Tried Out Those New Solar Benches</a></li>
-                                    <li class="up"><a
-                                            href="http://www.boston.com/travel/new-england/vermont/2013/07/15/new-england-top-outdoor-water-parks/e49xOgFux6THgmiLDXN3xH/pictures.html?p1=Well_MostPop_Emailed5">New
-                                            England&#8217;s top outdoor water parks</a></li>
-                                    <li class="down"><a
-                                            href="http://www.boston.com/food-dining/food/2014/07/02/drink-the-week-mojito-italiano/mVcpYl5P7IrDqRSpBx3KbL/video.html?p1=Well_MostPop_Emailed6">Drink
-                                            of the Week: Mojito Italiano</a></li>
-                                    <li class="up"><a
-                                            href="http://www.boston.com/news/local/massachusetts/2014/06/30/lawmakers-unveil-compounding-pharmacy-bill/uhQpaM1j2BqYQJLHPljtcO/story.html?p1=Well_MostPop_Emailed7">Lawmakers
-                                            pass compounding pharmacy oversight bill</a></li>
-                                </ol>
+                    <div id="Col2LRCont">
+                        <div id="Col2L"></div>
+                        <div id="Col2R">
+                            <div></div>
+                        </div>
+                        <div id="mostPopular">
+                            <!--passthru-->
+                            <div class="hslice" id="mostpopular"><span class="entry-title" style="display:none;">Boston.com
+                                    Most Emailed</span><a rel="entry-content"
+                                    href="http://www.boston.com/partners/ieslice/mostpopular.html"
+                                    style="display:none;">Subscribe
+                                    to Slice</a><a rel="bookmark"
+                                    href="http://www.boston.com/?camp=misc:on:mostpopslice:bookmark" target="_blank"
+                                    style="display:none;">Bookmark Boston.com Most Emailed</a><span class="ttl"
+                                    style="display:none;">120</span>
+                                <div id="mEmail">
+                                    <h3 class="sectionHeader"><a
+                                            href="http://tools.boston.com/pass-it-on/popular?time=hour&p1=MEWell_See_Full_List">MOST
+                                            E-MAILED &raquo; </a></h3>
+                                    <div class="dotted1px"></div>
+                                    <!--passthru-->
+                                    <ol class="linklist">
+                                        <li class="up"><a
+                                                href="/news/local/massachusetts/2014/07/03/report-warrant-issued-for-roggie-bar-owner/index.html">Report:
+                                                Warrant Issued for Roggie&#8217;s Bar Owner</a></li>
+                                        <li class="down"><a
+                                                href="/health/2014/07/03/map-greater-boston-farmers-markets/AIVWLgD8yfkcDiJW5I2HBM/index.html">Map
+                                                of Greater Boston Farmers Markets</a></li>
+                                        <li class="up"><a
+                                                href="/entertainment/events/2014/07/03/boston-pops-concert-move-keeps-the-beach-boys-ditches-joey-mcintyre/index.html">Boston
+                                                Pops Concert Move Keeps the Beach Boys, Ditches Joey McIntyre</a></li>
+                                        <li class="down"><a
+                                                href="/news/opinion/2014/07/03/tried-out-those-new-solar-benches/4e2aqfpZKMImTjZI0j8aLM/index.html?">We
+                                                Tried Out Those New Solar Benches</a></li>
+                                        <li class="up"><a
+                                                href="/travel/new-england/vermont/2013/07/15/new-england-top-outdoor-water-parks/e49xOgFux6THgmiLDXN3xH/pictures.html">New
+                                                England&#8217;s top outdoor water parks</a></li>
+                                        <li class="down"><a
+                                                href="/food-dining/food/2014/07/02/drink-the-week-mojito-italiano/mVcpYl5P7IrDqRSpBx3KbL/video.html">Drink
+                                                of the Week: Mojito Italiano</a></li>
+                                        <li class="up"><a
+                                                href="/news/local/massachusetts/2014/06/30/lawmakers-unveil-compounding-pharmacy-bill/uhQpaM1j2BqYQJLHPljtcO/index.html">Lawmakers
+                                                pass compounding pharmacy oversight bill</a></li>
+                                    </ol>
 
-                                <div class="leadOut"><a href="http://twitter.com/intent/user?screen_name=BostonPopular"
-                                        class="tt">Follow this list on Twitter: @BostonPopular</a></div>
-                                <div class="padTop16"></div>
+                                    <div class="leadOut"><a href="http://twitter.com/intent/user?screen_name=BostonPopular"
+                                            class="tt">Follow this list on Twitter: @BostonPopular</a></div>
+                                    <div class="padTop16"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
+
+
                 </div>
-
-
             </div>
             <div id="footer">
                 <div id="bottomBanner">
