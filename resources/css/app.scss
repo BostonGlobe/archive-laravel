@@ -1,9 +1,6 @@
-.container {
-	width: 100%;
-	max-width: 960px;
-	margin: 0 auto;
-	padding: 0 20px;
-}
+@import './variables';
+
+@import '../../node_modules/bootstrap/scss/bootstrap-grid';
 
 ul {
 	list-style: none;
@@ -15,8 +12,40 @@ ul {
 	}
 }
 
+.gnavContainer {
+	li {
+		text-transform: uppercase;
+		font-size: 85%;
+	}
+}
+
 #footToolsNav {
 	li:nth-child(even) {
 		display: none;
+	}
+}
+
+.hide,
+#sharetoolContainer,
+#toolsShareThis,
+#toolsYahooB,
+#bdc_emailWidget,
+#articleFootTools,
+#bdc_shareButtons,
+#tools {
+	display: none;
+}
+
+nav {
+	ul {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#f2f2f2));
+
+		a {
+			line-height: 2;
+			padding: 0 1em;
+		}
 	}
 }
