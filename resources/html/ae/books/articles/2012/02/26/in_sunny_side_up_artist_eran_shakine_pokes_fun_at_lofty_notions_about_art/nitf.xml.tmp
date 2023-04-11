@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nitf version="//IPTC//DTD NITF 3.2//EN">
+
+<head>
+  <story.date>2012-02-26</story.date>
+  <updated.date>2012-02-25T12:38:47</updated.date>
+  <pubdata name="Globe" type="print"
+           position.subsection="books"
+           position.subdesk="Books" position.edition="2"
+           position.section="books"
+           position.contentdesk="Sunday"
+           position.sequence="K,6,65"/>
+  <title>26find.ART</title>
+  <docdata>
+    <doc.id>GJN1TM9VV.1</doc.id>
+    <cci.story.id>02262012_26find.ART</cci.story.id>
+    <doc.copyright holder=""/>
+    <doc.rights owner=""/>
+    <identified-content>
+      <classifier type="tom">News</classifier>
+      <location class="primary">Boston, MA</location>
+      <sublocation>()</sublocation>
+      <location class="latitudelongitude">(42.354856099999999, -71.066119299999997)</location>
+      <location class="confidence">1.0</location>
+      <location class="relevance">0.999</location>
+      <location class="precision">1.0</location>
+    </identified-content>
+    <taxonomy>AE/Books</taxonomy>
+    <methodeuuid>39253386-5ccb-11e1-b2d1-4f5bd3a24415</methodeuuid>
+    <methodeurl>http://www.bostonglobe.com/arts/books/2012/02/26/sunny-side-artist-eran-shakine-pokes-fun-lofty-notions-about-art/LFtWAQV5WvDfea7XXrgZbJ/story.html</methodeurl>
+  </docdata>
+</head>
+<body>
+  <body.head>
+    <hedline>
+      <hl1>In &#8216;Sunny Side Up,&#8217; artist Eran Shakine pokes fun at lofty notions about art</hl1>
+      <hl2 hl2class="subhead"></hl2>
+      <hl2 hl2class="overline">The Find</hl2>
+    </hedline>
+    <byline>
+      
+        <person>By Jan Gardner</person>
+        
+      
+      <byttl></byttl>
+    </byline>
+    <abstract>In &#8220;Sunny Side Up,&#8217;&#8217; artist Eran Shakine pokes fun at lofty notions about art, inspiration, and genius. In the text below his sketch of a museum scene, Shakine notes that museum-goers spend an average of 10 seconds with each work, half of which is spent reading the label. He draws a hairpiece in the shape of, say, a Frank Gehry building and plops it on Gehry&#8217;s head. With a few bold lines, Shakine creates a world of commentary.</abstract> 
+  </body.head>
+  <body.content>
+    <block class="txt">
+      
+      <p>In <em class="b">&#8220;Sunny Side Up&#8217;&#8217;</em> (Hirmer), artist Eran Shakine, who lives in Tel Aviv and London, pokes fun at lofty notions about art, inspiration, and genius. In the text below his sketch of a museum scene, Shakine notes that museumgoers spend an average of 10 seconds with each work, half of which is spent reading the label. He draws a hairpiece in the shape of, say, a Frank Gehry building and plops it on Gehry&#8217;s head. He dresses Ralph Lauren and other male fashion designers in the clothing they create for women. With a few bold lines, Shakine creates a world of commentary.</p>
+      
+    </block>
+    
+      
+    
+  </body.content>
+</body>
+
+</nitf>

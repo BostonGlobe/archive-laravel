@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nitf version="//IPTC//DTD NITF 3.2//EN">
+  
+         <NewsML>
+                <Catalog/>
+                <NewsEnvelope>
+                   <DateAndTime>20120621T14:32:36</DateAndTime>
+                </NewsEnvelope>
+                <NewsItem>
+                  <Identification>
+                    <NewsIdentifier>
+                        <ProviderId>boston.com</ProviderId>
+                        <DateId>20120624</DateId>
+                        <NewsItemId>24please.xml</NewsItemId>
+                        <RevisionId PreviousRevision="0" Update="N">1</RevisionId>
+                        <PublicIdentifier>urn:newsml:boston.com:20120624:24please.xml</PublicIdentifier>
+                    </NewsIdentifier>
+                    <NameLabel>Taking a look at books about yoga</NameLabel>
+                  </Identification>
+                  <NewsManagement>
+                    <NewsItemType FormatName="News"/>
+                    <FirstCreated>20120621</FirstCreated>
+                    <ThisRevisionCreated>20120621T14:32:36</ThisRevisionCreated>
+                    <Status FormalName="Usable"/>
+                    <AssociatedWith FormalName="linkbox">NewsItem=http://www.boston.comae/books/articles/2012/06/24/taking_a_look_at_books_about_yoga</AssociatedWith>
+                  </NewsManagement>
+                  <NewsComponent>
+                    <NewsLines>
+                        <HeadLine>Philosophy, history, and more than a pose</HeadLine>    
+                        <DateLine>Boston, MA</DateLine>
+                        <CopyrightLine>2012 Globe Newspaper Company</CopyrightLine>
+                    </NewsLines>
+                    <AdministrativeMetadata>
+                        <Provider>
+                            <Party FormalName=""/>
+                        </Provider>
+                        <Creator>
+                            <Party FormalName=""
+    Vocabulary="urn:newsml:boston.com:20120624:24please.xml"/>
+                        <Contribution FormalName="Writer"/>
+                        </Creator>
+                    </AdministrativeMetadata>
+                    <DescriptiveMetadata>
+                        <Language FormalName="en"/>   
+                    </DescriptiveMetadata>
+                    <NewsComponent>
+                        <ContentItem>
+                            <MediaType FormalName="Text"/>
+                            <Format FormalName="NITF3.2"/>
+                            <DataContent>
+                                <span></span>
+                                <span><p>You may recall that, a few years ago, Cambridge embraced yoga in a unique, perchance ironic way. This had to do with an envelope, the one mailed with the city&#8217;s parking citations. Redesigned by a local artist, it displayed soothing pictures of figures in basic yoga poses. The idea? An allusion to yoga might reduce how royally ticked off you were to get the ticket. The envelope even announced, with all sweetness and light: &#8220;Citation Salutation.&#8221;</p><p>If you&#8217;re one of the millions of Americans who practice yoga, you get the joke: There&#8217;s a classic pose called &#8220;sun salutation.&#8221; If you&#8217;re not, you may still know a bit about this ancient practice that figures in Hinduism, Buddhism, and Jainism. That&#8217;s because in the United States, yoga has officially journeyed from sinister (it was once deemed &#8220;a love cult&#8221;) to oddball to mainstream. Since 1998, for instance, the National Institutes of Health has sponsored numerous studies of yoga&#8217;s effects on health. And just a few months ago, the White House Easter egg hunt featured yoga for kids in the &#8220;Yoga Garden.&#8221;</p><p>How we got here is the subject of <em class="b">&#8220;The Subtle Body: The Story of Yoga in America&#8221;</em> (Farrar, Straus and Giroux, 2010), by Stefanie Syman, founder of the Web magazine Feed. In the book, Syman clocks another Cambridge moment: In 1894, two New Englanders, Sara Bull and Sarah Farmer, sponsored a series of lectures on spiritualism and yoga that came to be known as the Cambridge Conferences, with Calcutta&#8217;s own Swami Vivekananda the resident rock star. Vivekananda is credited with reviving Hinduism in colonial India and spreading the philosophy behind yoga in the West. To him, yoga was &#8220;a scientific method to quell the fluctuations of the mind and thereby see God.&#8221;</p><p>We are a long way from downward dogs at the gym here. This spiritual emphasis is a hallmark of the first days of yoga in America; Henry David Thoreau, in fact, saw yoga as &#8220;an exercise of penance or extreme devotion.&#8221; But most Americans viewed yoga as tied up with &#8220;absurdity and impiety,&#8221; as one prominent minister opined. &#8220;The Subtle Body&#8221; goes on to trace this evolving American heritage like so many chakras from spine to scalp.</p><p>We get great stuff on the country&#8217;s controversial first homegrown guru &#8212; Pierre Bernard, born Perry Baker in Iowa in 1875. Then it&#8217;s on to Margaret Woodrow Wilson, yoga devotee and a presidential offspring (&#8220;Daughter of Wilson Turns Hindu,&#8221; bleats the Washington Post in 1940). The juiciest material, though, comes from Hollywood and the various celebrities &#8212; Gloria Swanson, Gary Cooper, Marilyn Monroe &#8212; who train with yogis to the stars. One of them, a Lithuanian-Russian &#233;migr&#233; who changed her name to Indra Devi, writes the game-changing <em class="b">&#8220;Forever Young, Forever Healthy: Simplified Yoga for Modern Living&#8221;</em> (Prentice-Hall, 1953, now out of print).</p><p>Playing up yoga&#8217;s health benefits and playing down the murky Asian God angle, of course, is what made it more palatable to a Judeo-Christian nation. Before that, sex and scandal were seemingly yoga&#8217;s blue-plate specials. Thus <em class="b">&#8220;The Great Oom: The Mysterious Origins of America&#8217;s First Yogi&#8221; </em>(Viking, 2010). Wonderfully written by Robert Love, former managing editor of Rolling Stone, we get the Jay Gatsby-meets-P.T. Barnum story of Pierre Bernard, who&#8217;d also run a three-ring circus, helped launch night baseball, and acted as a boxing promoter. Bernard was a hick from Iowa who happened to meet a Syrian Indian itinerant tutor. From him, Bernard learned the precepts of yoga and turned it into a sort of Americanized occultish vogue.</p><p>This was a time when Darwinism had blown a hole in traditional religion, and Bernard was able to attract the resulting seekers, especially women (he cuts quite the figure with his waxed moustache, bare chest, and teensy jeweled vest). It was also a time of trendy Orientalism and secret rituals; Bernard is mindful of Masonic tie-ins, for instance, and oversees moonlit tantric rituals in San Francisco and New York. He talks of sex as a sacrament. He is in the papers all the time. Heirs and heiresses fall under his thrall. And he opens the nation&#8217;s first ashram in 1918 in Nyack, N.Y. With yoga, he says, &#8220;life becomes brighter, nobler, grander and happier.&#8221;</p><p>In our day, these ostensibly transformative powers have kicked up a literary genre called the &#8220;yogoir.&#8221; Flush from the Bikram-hot success of &#8220;Eat, Pray, Love&#8221; publishers have eagerly piled on more memoirs in which seekers choose yoga to wrestle with new parenthood, midlife crisis, full-bore angst, or all of the above. Sounds insufferable, I know, but actually the following yogoirs are smartly written, self-deprecating, and refreshingly high on snark.</p><p>The best of the bunch is <em class="b">&#8220;Poser: My Life in Twenty-Three Yoga Poses&#8221; </em>(Farrar, Straus and Giroux, 2011) by essayist and critic Claire Dederer. She begins by skewering the PC parenting scene in her native Seattle &#8212; she had me at hello by calling a Snugli a &#8220;Smugli.&#8221; From there, we learn of her new baby, slightly rocky marriage, and neglectful, New Agey, semi-divorced parents. Each reminiscence and reckoning links to poses with names like the camel, cobbler&#8217;s pose, half moon, and (oh dear) corpse. Taking up yoga in midlife, she says, is like getting a dossier on yourself &#8220;full of information you&#8217;re not really sure you want.&#8221;</p><p>I see you and raise you with <em class="b">&#8220;Yoga Bitch: One Woman&#8217;s Quest to Conquer Skepticism, Cynicism, and Cigarettes on the Path to Enlightenment&#8221;</em> (Three Rivers, 2011). Author and comic Suzanne Morrison, also from Seattle, latches onto the yoga-changed-my-life conceit by teasing out a book from her one-woman show of the same title. Funny lady: One instructor has a &#8220;yogier-than-thou&#8221; voice, for instance, and her instructor is named Indra! A rebellious sort, Morrison can&#8217;t quite cotton to all the must-dos of her yoga apprenticeship in Bali (especially drinking her own urine). But she stays humane behind the one-liners.</p><p>In America, the vast majority of yoga practitioners are women. So it&#8217;s good to hear from a guy, especially one who calls himself &#8220;an ogre invited to a debutante ball.&#8221; That would be professional bad boy Neal Pollak who, in <em class="b">&#8220;Stretch: The Unlikely Making of a Yoga Dude&#8221; </em>(Harper Perennial, 2010), adopts yoga to cope with, yup, angst but also to nurse various injuries, and becomes a convert along the way. Even so, like his fellow yogoirists, Pollak&#8217;s a skeptic; when one instructor mouths something he finds twee, for instance, he belts out an obscenity in the middle of class. Does yoga change him? In an interview, he said it made him &#8220;twenty percent more thoughtful.&#8221; That&#8217;s not nothing.</p><p>These books witness yoga by way of history, humor, and spirituality. But none get hardball precise about what it actually accomplishes. Stepping into the breach is the illuminating <em class="b">&#8220;The Science of Yoga: The Risks and Rewards&#8221; </em>(Simon and Schuster, 2012) by New York Times science reporter William J. Broad. The bad news: You can&#8217;t really lose weight through yoga, and some poses can cause injury, even stroke. The good news: It elevates mood, decreases anxiety, and may well slow the aging process. After exhaustive research &#8212; Broad pores over the studies and also hoofs to India to uncover crucial lost texts &#8212; he concludes that yoga does more good than bad. In America, clearly, that&#8217;s the ticket.</p><p><em class="i">Katharine Whittemore is a freelance writer based in Northampton. She can be reached at katharine.whittemore@comcast.net.</em></p></span>
+                                <span></span>
+                            </DataContent>
+                        </ContentItem>
+                    </NewsComponent>
+                  </NewsComponent>
+                </NewsItem> 
+         </NewsML>
+  
+</nitf>

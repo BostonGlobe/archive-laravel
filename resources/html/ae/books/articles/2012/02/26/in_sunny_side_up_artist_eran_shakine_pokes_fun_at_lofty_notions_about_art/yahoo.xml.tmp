@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nitf version="//IPTC//DTD NITF 3.2//EN">
+  
+         <NewsML>
+                <Catalog/>
+                <NewsEnvelope>
+                   <DateAndTime>20120225T12:38:47</DateAndTime>
+                </NewsEnvelope>
+                <NewsItem>
+                  <Identification>
+                    <NewsIdentifier>
+                        <ProviderId>boston.com</ProviderId>
+                        <DateId>20120226</DateId>
+                        <NewsItemId>02262012_26find.ART</NewsItemId>
+                        <RevisionId PreviousRevision="0" Update="N">1</RevisionId>
+                        <PublicIdentifier>urn:newsml:boston.com:20120226:02262012_26find.ART</PublicIdentifier>
+                    </NewsIdentifier>
+                    <NameLabel>In &amp;#8216;Sunny Side Up,&amp;#8217; artist Eran Shakine pokes fun at lofty notions about art</NameLabel>
+                  </Identification>
+                  <NewsManagement>
+                    <NewsItemType FormatName="News"/>
+                    <FirstCreated>20120225</FirstCreated>
+                    <ThisRevisionCreated>20120225T12:38:47</ThisRevisionCreated>
+                    <Status FormalName="Usable"/>
+                    <AssociatedWith FormalName="linkbox">NewsItem=http://www.boston.comae/books/articles/2012/02/26/in_sunny_side_up_artist_eran_shakine_pokes_fun_at_lofty_notions_about_art</AssociatedWith>
+                  </NewsManagement>
+                  <NewsComponent>
+                    <NewsLines>
+                        <HeadLine>In &#8216;Sunny Side Up,&#8217; artist Eran Shakine pokes fun at lofty notions about art</HeadLine>    
+                        <DateLine>Boston, MA</DateLine>
+                        <CopyrightLine>2012 Globe Newspaper Company</CopyrightLine>
+                    </NewsLines>
+                    <AdministrativeMetadata>
+                        <Provider>
+                            <Party FormalName=""/>
+                        </Provider>
+                        <Creator>
+                            <Party FormalName="Jan Gardner"
+    Vocabulary="urn:newsml:boston.com:20120226:02262012_26find.ART"/>
+                        <Contribution FormalName="Writer"/>
+                        </Creator>
+                    </AdministrativeMetadata>
+                    <DescriptiveMetadata>
+                        <Language FormalName="en"/>   
+                    </DescriptiveMetadata>
+                    <NewsComponent>
+                        <ContentItem>
+                            <MediaType FormalName="Text"/>
+                            <Format FormalName="NITF3.2"/>
+                            <DataContent>
+                                <span></span>
+                                <span><p>In <em class="b">&#8220;Sunny Side Up&#8217;&#8217;</em> (Hirmer), artist Eran Shakine, who lives in Tel Aviv and London, pokes fun at lofty notions about art, inspiration, and genius. In the text below his sketch of a museum scene, Shakine notes that museumgoers spend an average of 10 seconds with each work, half of which is spent reading the label. He draws a hairpiece in the shape of, say, a Frank Gehry building and plops it on Gehry&#8217;s head. He dresses Ralph Lauren and other male fashion designers in the clothing they create for women. With a few bold lines, Shakine creates a world of commentary.</p></span>
+                                <span></span>
+                            </DataContent>
+                        </ContentItem>
+                    </NewsComponent>
+                  </NewsComponent>
+                </NewsItem> 
+         </NewsML>
+  
+</nitf>
