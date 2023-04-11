@@ -174,13 +174,10 @@
                                 </li>
                                 <li><a href="http://www.boston.com/help/">Help</a></li>
                                 <li><a href="http://www.boston.com/mediakit/bgm/index.html">Advertise</a></li>
-                                <li><a
-                                        href="http://boston.monster.com/search.aspx?q=%22boston.com%22&amp;cy=us&amp;cnme=boston&amp;sid=40&amp;re=100&amp;jto=1">Work
+                                <li><a href="http://boston.monster.com/search.aspx?q=%22boston.com%22&amp;cy=us&amp;cnme=boston&amp;sid=40&amp;re=100&amp;jto=1">Work
                                         here</a></li>
                                 <li><a href="http://www.boston.com/help/privacy_policy/">Privacy Policy</a></li>
-                                <li>
-                                    <a
-                                        href="http://members.boston.com/reg/login.do?dispatch=loginpage&amp;p1=Foot_ContactBostonCom_Newsletters">Newsletters</a>
+                                <li><a href="http://members.boston.com/reg/login.do?dispatch=loginpage&amp;p1=Foot_ContactBostonCom_Newsletters">Newsletters</a>
                                 </li>
                                 <li><a href="http://www.boston.com/mobile/">Mobile</a></li>
                                 <li><a href="http://www.boston.com/tools/rss/">RSS feeds</a></li>
