@@ -82,14 +82,16 @@ class Article
                 }
             }
         }
-        
+
         // Extract the article text
         $articleText = $doc->getElementById('Col1');
 
         if ($articleText === null) {
             $articleText = $doc->getElementById('articleContent');
         }
-
+        if ($articleText === null) {
+            $articleText = $doc->getElementById('article');
+        }
         if ($articleText === null) {
             abort(404);
         }
@@ -107,7 +109,7 @@ class Article
         }
 
         $h1 = $articleText->getElementsByTagName('h1');
-        
+
         // Load the template into a new document.
         return View::make('template', [
             'title' => $h1[0]->nodeValue,
