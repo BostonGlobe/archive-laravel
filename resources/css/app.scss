@@ -1,6 +1,6 @@
 @import './variables';
 
-@import '../../node_modules/bootstrap/scss/bootstrap-grid';
+@import '../../node_modules/bootstrap/scss/bootstrap';
 
 ul {
 	list-style: none;
@@ -20,32 +20,68 @@ ul {
 }
 
 
-.hide,
-#sharetoolContainer,
-#toolsShareThis,
-#toolsYahooB,
-#bdc_emailWidget,
-#articleFootTools,
-#bdc_shareButtons,
-#tools {
+.hide {
 	display: none;
 }
 
-nav {
-	ul {
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: space-between;
+
+#bottomLinks {
+	padding: 1em 0 1.5em;
+}
+
+.copyright {
+	font-size: 90%;
+	margin-bottom: 1em;
+}
+
+#articleBodyImageH,
+#imgSimple {
+	font-size: 90%;
+	font-weight: bold;
+
+	img {
+		display: block;
+		margin-bottom: .5em;
+	}
+}
+
+.utility {
+	margin-top: 1em;
+	// font-size: 90%;
+	font-style: italic;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
 
 
-		a {
-			line-height: 2;
-			padding: 0 1em;
-			background: -webkit-gradient(linear, left top, left bottom, from($blue-100), to($blue-200));
+.navbar {
+	font-family: $headings-font-family;
+	margin: 10px 0 20px;
+	background: $navbar-background-gradient;
 
-			&:hover {
-				background: -webkit-gradient(linear, left top, left bottom, from($blue-200), to($blue-300));
-			}
+	&.bg-primary a {
+		color: $primary;
+		font-weight: bold;
+		background: $navbar-background-gradient;
+
+		&:hover {
+			color: white;
+			background: $primary;
 		}
+	}
+}
+
+.breadcrumb {
+	font-size: 85%;
+	font-family: $headings-font-family;
+	font-weight: 700;
+	text-transform: uppercase;
+	margin-top: 20px;
+
+	a {
+		text-decoration: none;
 	}
 }

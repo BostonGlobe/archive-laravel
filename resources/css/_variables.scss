@@ -3,5 +3,16 @@ $container-max-widths: (
 	md: 720px,
 	lg: 960px,
 	xl: 1140px,
-	xxl: 1140px
 );
+$primary: #203c73;
+
+$font-family-base: 'Source Serif Pro', serif;
+
+$headings-font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+$headings-font-weight: 700;
+
+$navbar-background-gradient : linear-gradient(0deg, rgba(184, 215, 246, 1) 0%, rgba(211, 230, 249, 1) 100%);
+
+$navbar-padding-y: 0;
+$navbar-padding-x: 0;
+$navbar-nav-link-padding-x: 1rem;
