@@ -6,6 +6,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="{{ $description }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="icon" href="/favicon.png" sizes="any">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <meta name="theme-color" content="#fafafa">
@@ -35,9 +38,7 @@
                     <div id="signIn">
                         <span id="login" class="utility">
                         </span>
-                        <span id="globeLogo"><span id="gLogoSub"><a
-                                    href="https://bostonglobe.com/subscriber/offer/go/zip.asp?cd=WW015697&amp;od=28">Home
-                                    Delivery</a></span><a href="http://www.boston.com/bostonglobe/"><img
+                        <span id="globeLogo"><span id="gLogoSub"><a href="http://www.boston.com/bostonglobe/"><img
                                     src="http://cache.boston.com/universal/site_graphics/glogo.jpg"
                                     alt="Boston Globe"></a></span>
                     </div>
@@ -49,30 +50,26 @@
                     </div>
                 </div>
             </div>
-            <nav id="globalNavRedux">
-                <ul class="gnavContainer" id="nav">
-                    <li id="ghome"><a href="http://www.boston.com/">Home</a></li>
-                    <li id="gglobe"><a href="http://www.boston.com/bostonglobe">Today's Globe</a></li>
-                    <li id="gnews"><a href="http://www.boston.com/news/">News</a></li>
-                    <li id="gbusiness"><a href="http://www.boston.com/business/">Business</a></li>
-                    <li id="gsports"><a href="http://www.boston.com/sports/">Sports</a></li>
-                    <li id="glifestyle"><a href="http://www.boston.com/lifestyle/">Lifestyle</a></li>
-                    <li id="gae"><a href="http://www.boston.com/ae/">A&amp;E</a></li>
-                    <li id="gthings"><a href="http://www.boston.com/thingstodo/">Things to do</a></li>
-                    <li id="gtravel"><a href="http://www.boston.com/travel/">Travel</a></li>
-                    <li id="gcars"><a href="http://www.boston.com/cars/">Cars</a></li>
-                    <li id="gjobs"><a href="http://www.boston.com/jobs/">Jobs</a></li>
-                    <li id="gre"><a href="http://www.boston.com/realestate/">Homes</a></li>
-                    <li id="gsearch"><a href="http://search.boston.com/">Local Search</a></li>
-                </ul>
-
-                <ul id="sNav">
-                    <li><a href="http://www.boston.com/business/technology/" id="secnav_technology">Technology</a></li>
-                    <li><a href="http://www.boston.com/business/healthcare/" id="secnav_healthcare">Healthcare</a></li>
-                    <li><a href="http://finance.boston.com/boston?Page=MarketSummary" id="secnav_markets">Markets</a></li>
-                    <li><a href="http://www.boston.com/business/personalfinance/" id="secnav_personalfinance">Personal finance</a></li>
-                    <li><a href="http://www.boston.com/business/columnists/" id="secnav_columnists">Columnists</a></li>
-                </ul>
+            <nav id="globalNavRedux" class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#globalNav" aria-controls="globalNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="globalNav">
+                    <ul class="gnavContainer navbar-nav me-auto mb-2 mb-lg-0" id="nav">
+                        <li id="ghome" class="nav-item"><a class="nav-link" href="http://www.boston.com/">Home</a></li>
+                        <li id="gnews" class="nav-item"><a class="nav-link" href="http://www.boston.com/news/">News</a></li>
+                        <li id="gbusiness" class="nav-item"><a class="nav-link" href="http://www.boston.com/business/">Business</a></li>
+                        <li id="gsports" class="nav-item"><a class="nav-link" href="http://www.boston.com/sports/">Sports</a></li>
+                        <li id="glifestyle" class="nav-item"><a class="nav-link" href="http://www.boston.com/lifestyle/">Lifestyle</a></li>
+                        <li id="gae" class="nav-item"><a class="nav-link" href="http://www.boston.com/ae/">A&amp;E</a></li>
+                        <li id="gthings" class="nav-item"><a class="nav-link" href="http://www.boston.com/thingstodo/">Things to do</a></li>
+                        <li id="gtravel" class="nav-item"><a class="nav-link" href="http://www.boston.com/travel/">Travel</a></li>
+                        <li id="gcars" class="nav-item"><a class="nav-link" href="http://www.boston.com/cars/">Cars</a></li>
+                        <li id="gjobs" class="nav-item"><a class="nav-link" href="http://www.boston.com/jobs/">Jobs</a></li>
+                        <li id="gre" class="nav-item"><a class="nav-link" href="http://www.boston.com/realestate/">Homes</a></li>
+                        <li id="gsearch" class="nav-item"><a class="nav-link" href="http://search.boston.com/">Local Search</a></li>
+                    </ul>
+                </div>
             </nav>
             <div id="introad" class="adContainer"></div>
             <div id="billboardAd" class="adContainer"></div>
@@ -148,6 +145,9 @@
 
 
                 </div>
+                <div class="col-12">
+                    <hr>
+                </div>
             </div>
             <div id="footer">
                 <div id="bottomBanner">
@@ -216,7 +216,8 @@
                 </div>
             </div>
         </div>
-
+    </div>
+    @vite(['resources/js/app.js'])
 </body>
 
 </html>
