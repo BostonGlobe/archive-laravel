@@ -47,7 +47,6 @@ ul {
 
 .utility {
 	margin-top: 1em;
-	// font-size: 90%;
 	font-style: italic;
 }
 
@@ -61,7 +60,6 @@ img {
 		background: $navbar-background-gradient;
 	}
 }
-
 
 .navbar {
 	font-family: $headings-font-family;
@@ -98,8 +96,20 @@ img {
 			background: $primary;
 		}
 	}
+}
 
+.small {
+	font-size: .8em;
+}
 
+.byline,
+#byline,
+.dateline,
+#dateline {
+	font-size: 85%;
+	font-style: italic;
+	margin-bottom: 10px;
+	display: block;
 }
 
 .breadcrumb {
@@ -111,5 +121,16 @@ img {
 
 	a {
 		text-decoration: none;
+	}
+}
+
+#mEmail {
+	a {
+		text-decoration: none;
+	}
+
+	h3 {
+		font-size: 1.2em;
+		margin-bottom: 10px;
 	}
 }
