@@ -50,7 +50,7 @@
                     </div>
                 </div>
             </div>
-            <nav id="globalNavRedux" class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+            <nav id="globalNavRedux" class="navbar navbar-expand-lg" data-bs-theme="dark">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#globalNav" aria-controls="globalNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>

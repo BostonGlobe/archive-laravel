@@ -56,22 +56,50 @@ img {
 	height: auto;
 }
 
+@include media-breakpoint-up(lg) {
+	.navbar {
+		background: $navbar-background-gradient;
+	}
+}
+
 
 .navbar {
 	font-family: $headings-font-family;
 	margin: 10px 0 20px;
-	background: $navbar-background-gradient;
 
-	&.bg-primary a {
+	&-toggler {
+		margin-bottom: 1rem;
+		background: $nav-mobile-bg;
+	}
+
+	li {
+		border-bottom: 1px solid white;
+	}
+
+	@include media-breakpoint-up(lg) {
+		li {
+			border-bottom: none;
+			border-right: 1px solid white;
+		}
+	}
+
+	a {
 		color: $primary;
 		font-weight: bold;
-		background: $navbar-background-gradient;
+		background: $nav-mobile-bg;
+		padding-left: .5rem;
+
+		@include media-breakpoint-up(lg) {
+			background: none;
+		}
 
 		&:hover {
 			color: white;
 			background: $primary;
 		}
 	}
+
+
 }
 
 .breadcrumb {
