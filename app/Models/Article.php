@@ -82,6 +82,21 @@ class Article
                 }
             }
         }
+        $items_to_remove = [
+            'sharetoolContainer',
+            'toolsShareThis',
+            'toolsYahooB',
+            'bdc_emailWidget',
+            'articleFootTools',
+            'bdc_shareButtons',
+            'tools'
+        ];
+        foreach ($items_to_remove as $item) {
+            $item_to_remove = $doc->getElementById($item);
+            if ($item_to_remove !== null) {
+                $item_to_remove->parentNode->removeChild($item_to_remove);
+            }
+        }
 
         // Extract the article text
         $articleText = $doc->getElementById('Col1');
@@ -101,6 +116,7 @@ class Article
         while ($script = $scripts->item(0)) {
             $script->parentNode->removeChild($script);
         }
+
 
         // Remove all form tags in the article text, using the same method as above.
         $forms = $articleText->getElementsByTagName('form');
