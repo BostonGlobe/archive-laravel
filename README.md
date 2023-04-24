@@ -21,7 +21,7 @@ To set up the project run the following commands:
 3. `npm install`. This installs Bootstrap and Vite (CSS and JavaScript bundler).
 4. `npm run dev`. This will watch and compile the SASS. This requires Node V. 16 or greater.
 
-The site should be viewable at http://localhost/, or http://localhost:&lt;port> if your container is mapped to a different port.
+The site should be viewable at http://localhost/, or http://localhost:[port] if your container is mapped to a different port.
 
 Sample URLs to test:
 
