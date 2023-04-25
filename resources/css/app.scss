@@ -70,34 +70,29 @@ img {
 
 @include media-breakpoint-up(lg) {
 	.navbar {
-		background: $navbar-background-gradient;
+		background: $nav-mobile-bg;
 	}
 }
 
 .navbar {
 	font-family: $headings-font-family;
-	margin: 10px 0 20px;
+	margin: 10px 0 -20px;
 
 	&-toggler {
-		margin-bottom: 1rem;
+		margin-bottom: 1em;
 		background: $nav-mobile-bg;
-	}
-
-	li {
-		border-bottom: 1px solid white;
 	}
 
 	@include media-breakpoint-up(lg) {
 		li {
 			border-bottom: none;
-			border-right: 1px solid white;
 		}
 	}
 
 	a {
 		color: $primary;
-		font-weight: bold;
 		background: $nav-mobile-bg;
+		font-weight: bold;
 		padding-left: .5rem;
 
 		@include media-breakpoint-up(lg) {
@@ -145,5 +140,75 @@ img {
 	h3 {
 		font-size: 1.2em;
 		margin-bottom: 10px;
+	}
+}
+
+// Formatting the footer.
+
+// overall formatting styles for all text in the div.
+.bottomLinks {
+	display: inline;
+     list-style-type: none;
+     text-align: center;
+}
+
+// sets the padding/spacing between each item within the unordered lists.
+.footerLinks {
+	padding: 0 5px 5px 5px;
+}
+
+// sets the spacing between the rows of unordered lists.
+#bglobeLinks, #bcomLinks, #copyrightStamp {
+	margin-bottom: 15px;
+}
+
+// overwriting the snchor tag default setting.
+.defaultEdit {
+	text-decoration: none;
+}
+
+// adding it back when it is being hovered over.
+.defaultEdit:hover {
+	text-decoration: underline;
+}
+
+
+// Advertisements //
+
+// aligning the divs.
+#rightAd {
+	padding-top: 40px;
+	align-self: center;
+	padding-left: 0;
+	@include media-breakpoint-up(lg) {
+		align-self: normal;
+		padding-left: 35px;
+	}
+}
+
+#bannerAdSlot {
+	margin-bottom: 35px;
+	max-height: 100px;
+}
+
+#bannerAdSlot_Mobile {
+	text-align: center;
+	margin-top: -30px;
+}
+
+// swapping ads when the screen width changes.
+.desktopAd {
+	display: none;
+
+	@include media-breakpoint-up(lg) {
+		display: block;
+	}
+}
+.mobileAd {
+	display: block;
+	margin: 1em auto;
+
+	@include media-breakpoint-up(lg) {
+		display: none;
 	}
 }

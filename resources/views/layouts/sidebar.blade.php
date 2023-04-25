@@ -3,12 +3,7 @@
 	</div>
 	<div id="rightAd">
 		<div class="advertisement">Advertisement</div>
-		<div></div>
-	</div>
-	<div id="Col2LRCont">
-		<div id="Col2L"></div>
-		<div id="Col2R">
-			<div></div>
-		</div>
+		<div id="verticalAdSlot"><img class="desktopAd" src="/ads/toyotaAD.jpeg"" alt="Vertical Ad" ></div>
+		<div id="verticalAdSlot_Mobile"><img class="mobileAd" src="/ads/appleWatchAD.png"" alt="Mobile Vertical Ad" ></div>
 	</div>
 </div>

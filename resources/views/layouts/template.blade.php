@@ -17,6 +17,8 @@
 </head>
 
 <body>
+    <div id="bannerAdSlot"> <img class="desktopAd" src="/ads/amazonAD.jpg" alt="Horizontal Ad" ></div>
+    <div id="bannerAdSlot_Mobile"> <img class="mobileAd" src="/ads/dellAD.png" alt="Mobile Horizontal Ad" ></div>
     <div id="container" class="container">
         <div id="containerBorder">
             @include('layouts.header')
