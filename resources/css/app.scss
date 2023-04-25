@@ -187,19 +187,11 @@ img {
 }
 
 .bannerAdSlot {
-	margin-bottom: 40px;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 0;
-	width: 100%;
-	height: auto;
+	margin: 0 auto 30px auto;
 }
 
 .bannerAdSlot_Mobile {
-	margin-bottom: 1em;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: -7.6px;
+	margin: -7.6px auto 1em auto;
 }
 
 // swapping ads when the screen width changes.
