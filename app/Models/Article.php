@@ -127,7 +127,7 @@ class Article
         $h1 = $articleText->getElementsByTagName('h1');
 
         // Load the template into a new document.
-        return View::make('template', [
+        return View::make('layouts.template', [
             'title' => $h1[0]->nodeValue,
             'content' => $doc->saveHTML($articleText),
             'description' => $description
