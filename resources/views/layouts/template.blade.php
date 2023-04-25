@@ -24,16 +24,16 @@
             <div id="introad" class="adContainer"></div>
             <div id="billboardAd" class="adContainer"></div>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-lg-12">
                     <hr class="content-divider">
                 </div>
-                <div id="content" class="article main col-md-7">
+                <div id="content" class="article main col-lg-7">
                     {!! $content !!}
                     <div id="articleFootAd">
                         <div id="articleBottomAd"></div>
                     </div>
                 </div>
-                <div id="Col2" class="col-md-5">
+                <div id="Col2" class="col-lg-5">
                     <div id="Col2Top">
                     </div>
                     <div id="rightAd">
@@ -45,10 +45,7 @@
                         <div id="Col2R">
                             <div></div>
                         </div>
-                        
                     </div>
-
-
                 </div>
                 <div class="col-12">
                     <hr>
