@@ -12,6 +12,10 @@ ul {
 	}
 }
 
+#header {
+	margin-top: .5em;
+}
+
 .gnavContainer {
 	li {
 		text-transform: uppercase;
@@ -24,6 +28,11 @@ ul {
 	display: none;
 }
 
+@include media-breakpoint-up(lg) {
+	.content-divider {
+		display: none;
+	}
+}
 
 #bottomLinks {
 	padding: 1em 0 1.5em;
