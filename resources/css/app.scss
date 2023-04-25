@@ -186,14 +186,20 @@ img {
 	}
 }
 
-#bannerAdSlot {
-	margin-bottom: 50px;
+.bannerAdSlot {
+	margin-bottom: 40px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 0;
+	width: 100%;
 	height: auto;
 }
 
-#bannerAdSlot_Mobile {
-	text-align: center;
-	margin-top: -30px;
+.bannerAdSlot_Mobile {
+	margin-bottom: 1em;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: -7.6px;
 }
 
 // swapping ads when the screen width changes.
@@ -206,7 +212,6 @@ img {
 }
 .mobileAd {
 	display: block;
-	margin: 1em auto;
 
 	@include media-breakpoint-up(lg) {
 		display: none;
