@@ -66,6 +66,11 @@ ul {
 img {
 	max-width: 100%;
 	height: auto;
+
+	&.providerlogo {
+		margin-top: 10px;
+		width: 125px;
+	}
 }
 
 @include media-breakpoint-up(lg) {
