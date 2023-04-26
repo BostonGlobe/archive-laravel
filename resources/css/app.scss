@@ -149,8 +149,8 @@ img {
 // overall formatting styles for all text in the div.
 .bottomLinks {
 	display: inline;
-     list-style-type: none;
-     text-align: center;
+	list-style-type: none;
+	text-align: center;
 }
 
 // sets the padding/spacing between each item within the unordered lists.
@@ -159,7 +159,9 @@ img {
 }
 
 // sets the spacing between the rows of unordered lists.
-#bglobeLinks, #bcomLinks, #copyrightStamp {
+#bglobeLinks,
+#bcomLinks,
+#copyrightStamp {
 	margin-bottom: 5px;
 }
 
@@ -193,7 +195,7 @@ img {
 }
 
 .bannerAdSlot_Mobile {
-	margin: -7.6px auto 1em auto;
+	margin: 0 auto 1em;
 }
 
 // swapping ads when the screen width changes.
