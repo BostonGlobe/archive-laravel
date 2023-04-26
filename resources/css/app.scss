@@ -181,6 +181,7 @@ img {
 	padding-top: 40px;
 	align-self: center;
 	padding-left: 0;
+
 	@include media-breakpoint-up(lg) {
 		align-self: normal;
 		padding-left: 35px;
