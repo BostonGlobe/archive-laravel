@@ -1,0 +1,22 @@
+img {
+	max-width: 100%;
+	height: auto;
+
+	&.providerlogo {
+		margin-top: 10px;
+		width: 125px;
+		margin-left: 1em;
+	}
+}
+
+
+#articleBodyImageH,
+#imgSimple {
+	font-size: 90%;
+	font-weight: bold;
+
+	img {
+		display: block;
+		margin-bottom: .5em;
+	}
+}

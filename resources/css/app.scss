@@ -2,6 +2,11 @@
 
 @import '../../node_modules/bootstrap/scss/bootstrap';
 
+@import './ads';
+@import './images';
+@import './links';
+@import './navbar';
+
 ul {
 	list-style: none;
 	margin: 0;
@@ -34,85 +39,25 @@ ul {
 	}
 }
 
-.providerlogo {
-	margin-left: 1em;
-}
 
-#bottomLinks {
-	padding: 1em 0 1.5em;
-}
 
 .copyright {
 	font-size: 90%;
 	margin-bottom: 1em;
 }
 
-#articleBodyImageH,
-#imgSimple {
-	font-size: 90%;
-	font-weight: bold;
-
-	img {
-		display: block;
-		margin-bottom: .5em;
-	}
-}
 
 .utility {
 	margin-top: 1em;
 	font-style: italic;
 }
 
-img {
-	max-width: 100%;
-	height: auto;
-
-	&.providerlogo {
-		margin-top: 10px;
-		width: 125px;
-	}
-}
-
-@include media-breakpoint-up(lg) {
-	.navbar {
-		background: $nav-mobile-bg;
-	}
-}
-
-.navbar {
-	font-family: $headings-font-family;
-	margin: 10px 0 -20px;
-
-	&-toggler {
-		margin-bottom: 1em;
-		background: $nav-mobile-bg;
-	}
-
-	@include media-breakpoint-up(lg) {
-		li {
-			border-bottom: none;
-		}
-	}
-
-	a {
-		color: $primary;
-		background: $nav-mobile-bg;
-		font-weight: bold;
-		padding-left: .5rem;
-
-		@include media-breakpoint-up(lg) {
-			background: none;
-		}
-
-		&:hover {
-			color: white;
-			background: $primary;
-		}
-	}
-}
-
 .small {
 	font-size: .8em;
+}
+
+.article {
+	font-size: 1.1em;
 }
 
 .byline,
@@ -145,77 +90,5 @@ img {
 	h3 {
 		font-size: 1.2em;
 		margin-bottom: 10px;
-	}
-}
-
-
-// Formatting the footer.
-
-// overall formatting styles for all text in the div.
-.bottomLinks {
-	display: inline;
-	list-style-type: none;
-	text-align: center;
-}
-
-// sets the padding/spacing between each item within the unordered lists.
-.footerLinks {
-	padding: 0 5px 5px 5px;
-}
-
-// sets the spacing between the rows of unordered lists.
-#bglobeLinks,
-#bcomLinks,
-#copyrightStamp {
-	margin-bottom: 5px;
-}
-
-// overwriting the snchor tag default setting.
-.defaultEdit {
-	text-decoration: none;
-}
-
-// adding it back when it is being hovered over.
-.defaultEdit:hover {
-	text-decoration: underline;
-}
-
-
-// Advertisements //
-
-// aligning the divs.
-#rightAd {
-	padding-top: 40px;
-	align-self: center;
-	padding-left: 0;
-
-	@include media-breakpoint-up(lg) {
-		align-self: normal;
-		padding-left: 35px;
-	}
-}
-
-.bannerAdSlot {
-	margin: 0 auto 30px auto;
-}
-
-.bannerAdSlot_Mobile {
-	margin: 0 auto 1em;
-}
-
-// swapping ads when the screen width changes.
-.desktopAd {
-	display: none;
-
-	@include media-breakpoint-up(lg) {
-		display: block;
-	}
-}
-
-.mobileAd {
-	display: block;
-
-	@include media-breakpoint-up(lg) {
-		display: none;
 	}
 }

@@ -1,0 +1,37 @@
+.navbar {
+	font-family: $headings-font-family;
+	margin: 10px 0 -20px;
+
+	&-toggler {
+		margin-bottom: 1em;
+		background: $nav-mobile-bg;
+	}
+
+	@include media-breakpoint-up(lg) {
+		li {
+			border-bottom: none;
+		}
+	}
+
+	a {
+		color: $primary;
+		background: $nav-mobile-bg;
+		font-weight: bold;
+		padding-left: .5rem;
+
+		@include media-breakpoint-up(lg) {
+			background: none;
+		}
+
+		&:hover {
+			color: white;
+			background: $primary;
+		}
+	}
+}
+
+@include media-breakpoint-up(lg) {
+	.navbar {
+		background: $nav-mobile-bg;
+	}
+}

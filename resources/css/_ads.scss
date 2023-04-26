@@ -1,0 +1,38 @@
+// Advertisements //
+
+// aligning the divs.
+#rightAd {
+	padding-top: 40px;
+	align-self: center;
+	padding-left: 0;
+
+	@include media-breakpoint-up(lg) {
+		align-self: normal;
+		padding-left: 35px;
+	}
+}
+
+.bannerAdSlot {
+	margin: 0 auto 30px auto;
+}
+
+.bannerAdSlot_Mobile {
+	margin: 0 auto 1em;
+}
+
+// swapping ads when the screen width changes.
+.desktopAd {
+	display: none;
+
+	@include media-breakpoint-up(lg) {
+		display: block;
+	}
+}
+
+.mobileAd {
+	display: block;
+
+	@include media-breakpoint-up(lg) {
+		display: none;
+	}
+}
