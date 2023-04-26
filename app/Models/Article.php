@@ -89,7 +89,9 @@ class Article
             'bdc_emailWidget',
             'articleFootTools',
             'bdc_shareButtons',
-            'tools'
+            'tools',
+            'informBox',
+            'articleMoreLinksI'
         ];
         foreach ($items_to_remove as $item) {
             $item_to_remove = $doc->getElementById($item);
