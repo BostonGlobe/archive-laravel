@@ -1,23 +1,17 @@
 // overall formatting styles for all text in the div.
 .bottomLinks {
-	display: inline;
 	list-style-type: none;
 	text-align: center;
+	padding: 0 0 1em;
 }
 
 // sets the padding/spacing between each item within the unordered lists.
 .footerLinks {
 	padding: 0 5px 5px 5px;
+	line-height: 1;
 }
 
-// sets the spacing between the rows of unordered lists.
-#bglobeLinks,
-#bcomLinks,
-#copyrightStamp {
-	margin-bottom: 5px;
-}
-
-// overwriting the snchor tag default setting.
+// overwriting the anchor tag default setting.
 .defaultEdit {
 	text-decoration: none;
 }
@@ -25,8 +19,4 @@
 // adding it back when it is being hovered over.
 .defaultEdit:hover {
 	text-decoration: underline;
-}
-
-#bottomLinks {
-	padding: 1em 0 1.5em;
 }
