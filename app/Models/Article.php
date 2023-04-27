@@ -74,6 +74,7 @@ class Article
     /**
      * Extract article text.
      *
+     * @param DOMDocument $doc
      * @return DOMNode|null The article text, or null if it could not be found.
      */
     private static function extractArticleText($doc)
@@ -100,7 +101,7 @@ class Article
     /**
      * Reformat the content from the old file and insert it into an HTML5 template and remove obsolete elements.
      *
-     * @param mixed $html
+     * @param string $html
      * @return string The formatted HTML file contents.
      */
     private static function reformatFile($html)
@@ -189,6 +190,10 @@ class Article
 
     /**
      * Remove item from the DOM.
+     *
+     * @param DOMDocument $doc
+     * @param string $item
+     * @return void
      */
     private static function removeItem($doc, $item)
     {
