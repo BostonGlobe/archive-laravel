@@ -4,12 +4,4 @@
 			src="/bcom_logo.gif"
 			alt="Boston.com"></a>
 	</div>
-	<div id="headR">
-		<div id="headAd">
-			<div>
-				<div class="bannerAd">
-				</div>
-			</div>
-		</div>
-	</div>
 </div>

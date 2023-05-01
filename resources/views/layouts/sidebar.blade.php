@@ -1,6 +1,4 @@
 <div id="Col2" class="col-lg-5">
-	<div id="Col2Top">
-	</div>
 	<div id="rightAd">
 		<div class="advertisement">Advertisement</div>
 		<div id="verticalAdSlot"><img class="desktopAd" src="/ads/toyotaAD.jpeg"" alt="Vertical Ad" ></div>
