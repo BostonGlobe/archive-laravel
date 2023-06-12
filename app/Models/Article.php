@@ -45,7 +45,7 @@ class Article
             $path .= '/index.html';
         }
 
-        return resource_path('/html/' . $path);
+        return 'https://archive.boston.com/' . $path;
     }
 
     /**
@@ -60,11 +60,14 @@ class Article
     {
         $filePath = self::resolveHtmlFilePath($path);
 
-        if (! file_exists($filePath)) {
+        // The last parame is the maximum length of the file that we will fetch.
+        // This is included for security. It is 5 times the typical article length.
+        $html = file_get_contents($filePath, false, null, 0, 170000);
+        // dd(strlen($html) * 5);
+
+        if (! $html) {
             return false;
         }
-
-        $html = file_get_contents($filePath);
 
         return cache()->remember($path, 1, function () use ($html) {
             return self::reformatFile($html);
