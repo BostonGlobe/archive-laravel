@@ -41,8 +41,8 @@ class Article
      */
     private static function resolveHtmlFilePath($path)
     {
-        if (! str_ends_with($path, '/index.html')) {
-            $path .= '/index.html';
+        if (str_ends_with($path, '/')) {
+            $path .= 'index.html';
         }
 
         return 'https://archive.boston.com/' . $path;
@@ -60,10 +60,9 @@ class Article
     {
         $filePath = self::resolveHtmlFilePath($path);
 
-        // The last parame is the maximum length of the file that we will fetch.
-        // This is included for security. It is 5 times the typical article length.
+        // The last param is the maximum length of the file that we will fetch.
+        // This is included for security. It is 5 times a typical article length.
         $html = file_get_contents($filePath, false, null, 0, 170000);
-        // dd(strlen($html) * 5);
 
         if (! $html) {
             return false;
