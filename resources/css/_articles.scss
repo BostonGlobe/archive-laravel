@@ -1,0 +1,55 @@
+.article {
+	font-size: 1.1em;
+}
+
+.byline,
+#byline,
+.dateline,
+#dateline {
+	font-size: 85%;
+	font-style: italic;
+	margin-bottom: 10px;
+	display: block;
+
+	a {
+		text-decoration: none;
+	}
+
+	a:hover {
+		text-decoration: underline;
+	}
+}
+
+.breadcrumb {
+	font-size: 85%;
+	font-family: $headings-font-family;
+	font-weight: 700;
+	text-transform: uppercase;
+	margin-top: 20px;
+
+	a {
+		text-decoration: none;
+	}
+}
+
+.copyright {
+	font-size: 90%;
+	margin-bottom: 1em;
+}
+
+.utility {
+	margin-top: 1em;
+	font-style: italic;
+	font-size: 1.1em;
+}
+
+#mEmail {
+	a {
+		text-decoration: none;
+	}
+
+	h3 {
+		font-size: 1.2em;
+		margin-bottom: 10px;
+	}
+}
