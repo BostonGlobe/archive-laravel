@@ -12,9 +12,10 @@ class Article
 {
     private static string $title = '';
     private static array $contentIds = [
-        'Col1',
+        'content',
         'articleContent',
         'article',
+        'Col1',
     ];
 
     private static array $ids_to_remove = [
@@ -28,6 +29,21 @@ class Article
         'informBox',
         'articleMoreLinksI',
         'subCont',
+        'mostPopular',
+        'catHeader',
+        'blogheadTools',
+        'recentPosts',
+        'indNav',
+        'Col2L',
+        'relatedContent',
+        'pagination',
+        'rightAd',
+    ];
+
+    private static array $classes_to_remove = [
+        'leftButtons',
+        'share-tools-container',
+        'padAll10',
     ];
 
     private static DOMDocument $doc;
@@ -165,10 +181,13 @@ class Article
         $childElements = self::$doc->getElementsByTagName('div'); // get all child elements
 
         foreach ($childElements as $child) {
-            if ($child->hasAttribute('class') && $child->getAttribute('class') == 'leftButtons') {
-                // found the child element with the specified class
-                $child->parentNode->removeChild($child); // remove it
+            foreach (self::$classes_to_remove as $class) {
+                if ($child->hasAttribute('class') && $child->getAttribute('class') == $class) {
+                    // found the child element with the specified class
+                    $child->parentNode->removeChild($child); // remove it
+                }
             }
+
             // We already removed this, but it was often placed twice in the HTML.
             if ($child->hasAttribute('id') && $child->getAttribute('id') == 'sharetoolContainer') {
                 $child->parentNode->removeChild($child); // remove it
