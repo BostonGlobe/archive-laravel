@@ -1,5 +1,5 @@
 .article {
-	font-size: 1.1em;
+	font-size: 1.05em;
 }
 
 .byline,
@@ -20,8 +20,10 @@
 	}
 }
 
-.breadcrumb {
+.breadcrumb,
+.breadcrumb.utility {
 	font-size: 85%;
+	font-style: normal;
 	font-family: $headings-font-family;
 	font-weight: 700;
 	text-transform: uppercase;
