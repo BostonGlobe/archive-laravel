@@ -164,13 +164,19 @@ class HtmlCleanup
         }
     }
 
-    public static function extractDateFromString($string)
+    /**
+     * Extract the article date from the path.
+     *
+     * @param string $path
+     * @return string|null
+     */
+    public static function extractDateFromString($path)
     {
         // Define the pattern to match the date in the string
         $pattern = '/\/(\d{4})\/(\d{2})\/(\d{2})\//';
 
         // Perform regex matching to extract the date parts
-        preg_match($pattern, $string, $matches);
+        preg_match($pattern, $path, $matches);
 
         if (count($matches) === 4) {
             // Create a Carbon instance from the extracted date parts

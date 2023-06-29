@@ -7,8 +7,6 @@ use Illuminate\Console\Command;
 use Elastic\Elasticsearch\ClientBuilder;
 use Illuminate\Support\Facades\File;
 use App\Services\HtmlCleanup;
-use Carbon\Carbon;
-use Nette\Utils\Html;
 
 class IndexHtmlFiles extends Command
 {
