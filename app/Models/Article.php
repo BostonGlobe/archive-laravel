@@ -7,48 +7,18 @@ namespace App\Models;
 use DOMDocument;
 use DOMNode;
 use Illuminate\Support\Facades\View;
+use App\Services\HtmlCleanup;
 
 class Article
 {
     private static string $title = '';
-    private static array $contentIds = [
-        'content',
-        'articleContent',
-        'article',
-        'Col1',
-    ];
 
-    private static array $ids_to_remove = [
-        'sharetoolContainer',
-        'toolsShareThis',
-        'toolsYahooB',
-        'bdc_emailWidget',
-        'articleFootTools',
-        'bdc_shareButtons',
-        'tools',
-        'informBox',
-        'articleMoreLinksI',
-        'subCont',
-        'mostPopular',
-        'catHeader',
-        'blogheadTools',
-        'recentPosts',
-        'indNav',
-        'Col2L',
-        'relatedContent',
-        'pagination',
-        'rightAd',
-    ];
-
-    private static array $classes_to_remove = [
-        'leftButtons',
-        'share-tools-container',
-        'padAll10',
-    ];
+    private static string $description = '';
 
     private static DOMDocument $doc;
 
     private static DOMNode | null $articleText;
+
     /**
      * Resolve the HTML file path, making sure it ends with "/index.html".
      *
@@ -89,33 +59,7 @@ class Article
         });
     }
 
-    /**
-     * Extract article text.
-     *
-     * @param DOMDocument $doc
-     * @return DOMNode|null The article text, or null if it could not be found.
-     */
-    private static function extractArticleText($doc)
-    {
-        foreach (self::$contentIds as $contentId) {
-            $articleText = self::$doc->getElementById($contentId);
-            if ($articleText !== null) {
-                return $articleText;
-            }
-        }
 
-        // If we couldn't find the article by ID, try to find it by class 'story'.
-        // Usually the article is split into multiple divs with this class.
-        $divs = self::$doc->getElementsByTagName('div');
-        $articleText = self::$doc->createElement('div');
-        foreach ($divs as $div) {
-            if ($div->hasAttribute('class') && $div->getAttribute('class') == 'story') {
-                $articleText->appendChild($div);
-            }
-        }
-
-        return $articleText;
-    }
     /**
      * Reformat the content from the old file and insert it into an HTML5 template and remove obsolete elements.
      *
@@ -137,90 +81,27 @@ class Article
         // Also no doctype declaration.
         self::$doc->loadHTML($html, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
 
-        // Remove all script tags from the document.
-        $scripts = self::$doc->getElementsByTagName('script');
-        // Loop through the DOMNodeList backwards.
-        while ($script = $scripts->item(0)) {
-            $script->parentNode->removeChild($script);
-        }
-        // Remove all form tags in the article text, using the same method as above.
-        $forms = self::$doc->getElementsByTagName('form');
-        while ($form = $forms->item(0)) {
-            $form->parentNode->removeChild($form);
-        }
+        // Extract the title
+        self::$title = HtmlCleanup::extractTitle(self::$doc) ?? 'Boston.com';
 
-        $metaTags = self::$doc->getElementsByTagName('meta');
+        // Extract Description
+        self::$description = HtmlCleanup::extractDescription(self::$doc);
 
-        $description = '';
-        foreach ($metaTags as $metaTag) {
-            if ($metaTag->getAttribute('http-equiv') == 'Description') {
-                $description = $metaTag->getAttribute('content');
-                break;
-            }
-        }
-
-        if ($description == '') {
-            foreach ($metaTags as $metaTag) {
-                if ($metaTag->getAttribute('name') == 'Description') {
-                    $description = $metaTag->getAttribute('content');
-                    break;
-                }
-            }
-        }
-
-        // Get the h1 tag for the title.
-        $titleNode = self::$doc->getElementsByTagName('h1')->item(0);
-        if ($titleNode) {
-            self::$title = self::$doc->getElementsByTagName('h1')->item(0)->textContent;
-        }
-
-        foreach (self::$ids_to_remove as $item) {
-            self::removeItem(self::$doc, $item);
-        }
-
-        $childElements = self::$doc->getElementsByTagName('div'); // get all child elements
-
-        foreach ($childElements as $child) {
-            foreach (self::$classes_to_remove as $class) {
-                if ($child->hasAttribute('class') && $child->getAttribute('class') == $class) {
-                    // found the child element with the specified class
-                    $child->parentNode->removeChild($child); // remove it
-                }
-            }
-
-            // We already removed this, but it was often placed twice in the HTML.
-            if ($child->hasAttribute('id') && $child->getAttribute('id') == 'sharetoolContainer') {
-                $child->parentNode->removeChild($child); // remove it
-            }
-        }
+        self::$doc = HtmlCleanup::cleanupHtml(self::$doc);
 
         // Extract the article text
-        self::$articleText = self::extractArticleText(self::$doc);
+        self::$articleText = HtmlCleanup::extractArticleText(self::$doc);
+
 
         if (self::$articleText !== null) {
             // Load the template into a new document.
             return View::make('layouts.template', [
             'title' => self::$title,
             'content' => self::$doc->saveHTML(self::$articleText),
-            'description' => $description
+            'description' => self::$description
             ])->render();
         } else {
             abort(404);
-        }
-    }
-
-    /**
-     * Remove item from the DOM.
-     *
-     * @param DOMDocument $doc
-     * @param string $item
-     * @return void
-     */
-    private static function removeItem($doc, $item)
-    {
-        $item = $doc->getElementById($item);
-        if ($item !== null) {
-            $item->parentNode->removeChild($item);
         }
     }
 }
