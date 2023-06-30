@@ -23,9 +23,6 @@
             @include('layouts.header')
             @include('layouts.nav')
             <div class="row">
-                <div class="col-lg-12">
-                    <hr class="content-divider">
-                </div>
                 <div id="content" class="article main col-lg-7">
                     {!! $content !!}
                 </div>

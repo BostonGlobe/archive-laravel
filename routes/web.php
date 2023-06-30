@@ -13,7 +13,7 @@ use App\Models\Article;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
- 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -27,3 +27,5 @@ Route::get('/{path}', function ($path) {
 
     return $result;
 })->where('path', '[a-zA-Z0-9\/\-_\.]+');
+
+Route::get('/search', 'SearchController@search')->name('search');

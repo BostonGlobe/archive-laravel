@@ -21,7 +21,8 @@
 }
 
 .breadcrumb,
-.breadcrumb.utility {
+.breadcrumb.utility,
+.pageBreadcrumbPadding {
 	font-size: 85%;
 	font-style: normal;
 	font-family: $headings-font-family;
@@ -54,4 +55,9 @@
 		font-size: 1.2em;
 		margin-bottom: 10px;
 	}
+}
+
+td.story {
+	padding: 0 0 0 10px;
+	display: block;
 }

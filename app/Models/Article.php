@@ -92,7 +92,6 @@ class Article
         // Extract the article text
         self::$articleText = HtmlCleanup::extractArticleText(self::$doc);
 
-
         if (self::$articleText !== null) {
             // Load the template into a new document.
             return View::make('layouts.template', [

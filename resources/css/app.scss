@@ -18,8 +18,15 @@ ul {
 	}
 }
 
-#header {
+.header {
 	margin-top: .5em;
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+
+	@include media-breakpoint-up(sm) {
+		flex-direction: row;
+	}
 }
 
 .hide {
