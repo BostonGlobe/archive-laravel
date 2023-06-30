@@ -20,6 +20,12 @@
 	margin: 0 auto 1em;
 }
 
+.centralLeftAd+.story:before {
+	content: '';
+	display: table;
+	clear: both;
+}
+
 // swapping ads when the screen width changes.
 .desktopAd {
 	display: none;
