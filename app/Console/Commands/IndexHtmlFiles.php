@@ -7,6 +7,8 @@ use Illuminate\Console\Command;
 use Elastic\Elasticsearch\ClientBuilder;
 use Illuminate\Support\Facades\File;
 use App\Services\HtmlCleanup;
+use Nette\Utils\Html;
+use PHPUnit\Event\Runtime\PHP;
 
 class IndexHtmlFiles extends Command
 {
@@ -38,13 +40,15 @@ class IndexHtmlFiles extends Command
 
         File::lines($filepath)->each(function ($path) use ($elasticsearch) {
 
-            // Prepare the search query
+            $dirPath = HtmlCleanup::extractDirPath($path);
+
+            // Prepare the search query to check if the file has already been indexed
             $params = [
-                'index' => 'archive-bdc',
+                'index' => env('ELASTICSEARCH_INDEX'),
                 'body' => [
                     'query' => [
-                        'term' => [
-                            'path.keyword' => $path
+                        'match' => [
+                            'path' => $dirPath
                         ]
                     ]
                 ]
@@ -56,14 +60,7 @@ class IndexHtmlFiles extends Command
                 $this->info('Already indexed ' . $path);
                 return;
             } else {
-                $html = file_get_contents('https://archive.boston.com/' . $path, false, null, 0, 170000);
-
-                if (! $html || str_starts_with($html, 'This page has expired.')) {
-                    $this->info('This is expired: ' . $path);
-                    return;
-                }
-
-                $this->info('Indexing ' . $path);
+                $html = @file_get_contents('https://archive.boston.com/' . $path, false, null, 0, 170000);
 
                 // Convert all special characters to utf-8
                 $html = mb_convert_encoding($html, 'HTML-ENTITIES', 'UTF-8');
@@ -90,15 +87,24 @@ class IndexHtmlFiles extends Command
 
                 // Extract the article text
                 $articleText = HtmlCleanup::extractArticleText($doc);
+                $contentLength = strlen(trim($articleText->textContent));
+                $this->info('Content length: ' . $contentLength);
+
+                if ($contentLength < 300) {
+                    $this->info('Not enough content for ' . $path);
+                    return;
+                }
+                $this->info('Indexing: ' . $path);
 
                 $elasticsearch->index([
-                    'index' => 'archive-bdc',
+                    'index' => env('ELASTICSEARCH_INDEX'),
                     'body' => [
-                        'path' => $path,
+                        'path' => $dirPath,
                         'title' => $title,
                         'description' => $description,
                         'date' => $date,
                         'author' => $author,
+                        'article_length' => $contentLength,
                         'content' => $doc->saveHTML($articleText),
                     ],
                 ]);
