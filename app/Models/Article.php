@@ -48,7 +48,7 @@ class Article
 
         // The last param is the maximum length of the file that we will fetch.
         // This is included for security. It is 5 times a typical article length.
-        $html = file_get_contents($filePath, false, null, 0, 170000);
+        $html = @file_get_contents($filePath, false, null, 0, 170000);
 
         if (! $html) {
             return false;
