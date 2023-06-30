@@ -10,12 +10,17 @@ use Carbon\Carbon;
 class HtmlCleanup
 {
     private static array $contentIds = [
-        'content',
         'articleContent',
         'article',
         'Col1',
+        'mainContent',
+        'content',
     ];
 
+    private static array $contentClasses = [
+        'mainContent',
+        'story',
+    ];
     private static array $ids_to_remove = [
         'sharetoolContainer',
         'toolsShareThis',
@@ -36,7 +41,8 @@ class HtmlCleanup
         'relatedContent',
         'pagination',
         'rightAd',
-        'moreList'
+        'moreList',
+        'nonSub',
     ];
 
     private static array $classes_to_remove = [
@@ -47,6 +53,7 @@ class HtmlCleanup
         'noDot',
         'blackNodot',
         'noDot',
+        'toolsMain'
     ];
 
     /**
@@ -69,14 +76,22 @@ class HtmlCleanup
         $divs = $doc->getElementsByTagName('div');
         $articleText = $doc->createElement('div');
         foreach ($divs as $div) {
-            if ($div->hasAttribute('class') && $div->getAttribute('class') == 'story') {
-                $articleText->appendChild($div);
+            foreach (self::$contentClasses as $contentClass) {
+                if ($div->hasAttribute('class') && $div->getAttribute('class') == $contentClass) {
+                    $articleText->appendChild($div);
+                    break;
+                }
             }
         }
 
         return $articleText;
     }
 
+    /**
+     * Remove script tags, form tags, and other elements.
+     * @param DOMDocument $doc
+     * @return DOMDocument
+     */
     public static function cleanupHtml($doc)
     {
         // Remove all script tags from the document.
@@ -192,6 +207,11 @@ class HtmlCleanup
         return null; // Return null if no date match found
     }
 
+    /**
+     * Extract the author from the DOM.
+     * @param mixed $doc
+     * @return string|void
+     */
     public static function extractAuthor($doc)
     {
         $author = $doc->getElementByID('byline');
@@ -213,6 +233,13 @@ class HtmlCleanup
             }
         }
     }
+
+    /**
+     * Extract the author's name from the byline.
+     *
+     * @param string $byline
+     * @return string
+     */
     private static function extractNameFromByline($byline)
     {
         // Remove newlines from the input string
@@ -235,5 +262,23 @@ class HtmlCleanup
         }
 
         return $byline;
+    }
+
+    /**
+     * Extract the directory path from a URL.
+     *
+     * @param string $path
+     * @return string
+     */
+    public static function extractDirPath($path)
+    {
+        $lastSlashPos = strrpos($path, '/');
+        if ($lastSlashPos !== false) {
+            $newString = substr($path, 0, $lastSlashPos + 1);
+            return $newString; // Output: path/to/
+        } else {
+            // No forward slash found in the string
+            return $path;
+        }
     }
 }
