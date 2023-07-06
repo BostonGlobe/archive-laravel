@@ -37,6 +37,10 @@
 	}
 }
 
+.main-nav {
+	margin-bottom: 1em;
+}
+
 @include media-breakpoint-up(lg) {
 	.navbar {
 		background: $nav-mobile-bg;
