@@ -4,5 +4,5 @@
 			src="/bcom_logo.gif"
 			alt="Boston.com"></a>
 	</div>
-	@include('search.form')
+	@include('partials.searchform')
 </div>

@@ -1,9 +1,9 @@
-<nav class="navbar navbar-expand-lg" data-bs-theme="dark">
+<nav class="navbar navbar-expand-lg main-nav" data-bs-theme="dark">
 	<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#globalNav" aria-controls="globalNav" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
 	</button>
 	<div class="collapse navbar-collapse" id="globalNav">
-		<ul class="gnavContainer navbar-nav me-auto mb-2 mb-lg-0" id="nav">
+		<ul class="list-unstyled gnavContainer navbar-nav me-auto mb-2 mb-lg-0" id="nav">
 			<li class="nav-item"><a class="nav-link" href="https://www.boston.com/">Home</a></li>
 			<li class="nav-item"><a class="nav-link" href="https://www.boston.com/category/news/">News</a></li>
 			<li class="nav-item"><a class="nav-link" href="https://www.boston.com/tag/business/">Business</a></li>
