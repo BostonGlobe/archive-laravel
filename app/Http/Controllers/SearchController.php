@@ -2,35 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use Elastic\Elasticsearch\ClientBuilder;
 use Illuminate\Http\Request;
+use App\Services\ElasticsearchService;
 
 class SearchController extends Controller
 {
+    protected $elasticsearchService;
+
+    public function __construct(ElasticsearchService $elasticsearchService)
+    {
+        $this->elasticsearchService = $elasticsearchService;
+    }
+
     public function search(Request $request)
     {
+        $request->validate([
+            's' => 'required|max:255',
+        ]);
 
         $keyphrase = $request->input('s');
-
-        $client = ClientBuilder::create()
-        ->setHosts([env('ELASTICSEARCH_HOST')])
-        ->build();
-
-        $params = [
-            'index' => env('ELASTICSEARCH_INDEX'), // Replace with your Elasticsearch index name
-            'body' => [
-                'query' => [
-                    'multi_match' => [
-                        'query' => $keyphrase,
-                        'fields' => ['title^3', 'description^2', 'content'],
-                    ],
-                ],
-            ],
-        ];
-
-        $response = $client->search($params);
-
-        $results = collect($response['hits']['hits'])->pluck('_source');
+        $results = $this->elasticsearchService->search($keyphrase);
 
         return view('searchresults', compact('results', 'keyphrase'));
     }
