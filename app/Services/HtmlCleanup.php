@@ -281,4 +281,26 @@ class HtmlCleanup
             return $path;
         }
     }
+
+    /**
+     * Extract the directory path from a URL.
+     *
+     * @param string $url
+     * @return string
+     */
+    public static function extractFirstDirectory($url)
+    {
+        $parsedUrl = parse_url($url);
+
+        if (isset($parsedUrl['path'])) {
+            $path = $parsedUrl['path'];
+            $pathSegments = explode('/', trim($path, '/'));
+
+            if (count($pathSegments) >= 1) {
+                return strtolower($pathSegments[0]);
+            }
+        }
+
+        return null; // Return null if the URL doesn't have a valid path
+    }
 }
