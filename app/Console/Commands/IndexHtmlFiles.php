@@ -38,9 +38,9 @@ class IndexHtmlFiles extends Command
         }
 
 
-        File::lines($filepath)->each(function ($path) use ($elasticsearch) {
+        File::lines($filepath)->each(function ($url) use ($elasticsearch) {
 
-            $dirPath = HtmlCleanup::extractDirPath($path);
+            // $dirPath = HtmlCleanup::extractDirPath($url);
 
             // Prepare the search query to check if the file has already been indexed
             $params = [
@@ -48,7 +48,7 @@ class IndexHtmlFiles extends Command
                 'body' => [
                     'query' => [
                         'match' => [
-                            'path' => $dirPath
+                            'path.keyword' => $url
                         ]
                     ]
                 ]
@@ -57,10 +57,10 @@ class IndexHtmlFiles extends Command
             $response = $elasticsearch->search($params);
 
             if (($response['hits']['total']['value'] > 0)) {
-                $this->info('Already indexed ' . $path);
+                $this->info('Already indexed ' . $url);
                 return;
             } else {
-                $html = @file_get_contents('https://archive.boston.com/' . $path, false, null, 0, 170000);
+                $html = @file_get_contents('https://archive.boston.com/' . $url, false, null, 0, 170000);
 
                 // Convert all special characters to utf-8
                 $html = mb_convert_encoding($html, 'HTML-ENTITIES', 'UTF-8');
@@ -79,11 +79,13 @@ class IndexHtmlFiles extends Command
 
                 $description = HtmlCleanup::extractDescription($doc);
 
-                $date = HtmlCleanup::extractDateFromString($path);
+                $date = HtmlCleanup::extractDateFromString($url);
 
                 $doc = HtmlCleanup::cleanupHtml($doc);
 
                 $author = HtmlCleanup::extractAuthor($doc);
+
+                $section = HtmlCleanup::extractFirstDirectory($url);
 
                 // Extract the article text
                 $articleText = HtmlCleanup::extractArticleText($doc);
@@ -91,19 +93,20 @@ class IndexHtmlFiles extends Command
                 $this->info('Content length: ' . $contentLength);
 
                 if ($contentLength < 300) {
-                    $this->info('Not enough content for ' . $path);
+                    $this->info('Not enough content for ' . $url);
                     return;
                 }
-                $this->info('Indexing: ' . $path);
+                $this->info('Indexing: ' . $url);
 
                 $elasticsearch->index([
                     'index' => env('ELASTICSEARCH_INDEX'),
                     'body' => [
-                        'path' => $dirPath,
+                        'url' => $url,
                         'title' => $title,
                         'description' => $description,
                         'date' => $date,
                         'author' => $author,
+                        'section' => $section,
                         'article_length' => $contentLength,
                         'content' => $doc->saveHTML($articleText),
                     ],
