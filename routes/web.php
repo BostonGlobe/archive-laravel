@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Article;
+use App\Http\Controllers\SearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +19,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/search', [SearchController::class, 'search'])->name('search');
+
 Route::get('/{path}', function ($path) {
     $result = Article::fetchFormattedHtmlFile($path);
 
@@ -27,5 +30,3 @@ Route::get('/{path}', function ($path) {
 
     return $result;
 })->where('path', '[a-zA-Z0-9\/\-_\.]+');
-
-Route::get('/search', 'SearchController@search')->name('search');
