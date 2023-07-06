@@ -94,7 +94,7 @@ class Article
 
         if (self::$articleText !== null) {
             // Load the template into a new document.
-            return View::make('layouts.template', [
+            return View::make('article', [
             'title' => self::$title,
             'content' => self::$doc->saveHTML(self::$articleText),
             'description' => self::$description
