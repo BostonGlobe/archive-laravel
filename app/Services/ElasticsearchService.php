@@ -3,6 +3,12 @@
 namespace App\Services;
 
 use Elastic\Elasticsearch\ClientBuilder;
+use Elastic\Elasticsearch\Response\Elasticsearch;
+use Http\Promise\Promise;
+use InvalidArgumentException;
+use Elastic\Transport\Exception\NoNodeAvailableException;
+use Elastic\Elasticsearch\Exception\ClientResponseException;
+use Elastic\Elasticsearch\Exception\ServerResponseException;
 
 class ElasticsearchService
 {
@@ -15,11 +21,24 @@ class ElasticsearchService
             ->build();
     }
 
-    public function search($keyphrase)
+    /**
+     * Search the Elasticsearch index for articles matching the given keyphrase.
+     * @param string $keyphrase
+     * @param int $page
+     * @param int $size
+     * @return Elasticsearch|Promise
+     * @throws InvalidArgumentException
+     * @throws NoNodeAvailableException
+     * @throws ClientResponseException
+     * @throws ServerResponseException
+     */
+    public function search($keyphrase, $page, $size)
     {
         $params = [
             'index' => env('ELASTICSEARCH_INDEX'),
             'body' => [
+                'from' => ($page - 1) * $size,
+                'size' => $size,
                 'query' => [
                     'multi_match' => [
                         'query' => $keyphrase,
@@ -32,6 +51,7 @@ class ElasticsearchService
         $response = $this->client->search($params);
         return $response;
     }
+
 
     /**
      * Retrieve a article by URL.

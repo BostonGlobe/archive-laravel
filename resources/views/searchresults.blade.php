@@ -10,14 +10,15 @@
             @include('partials.nav')
             <div class="row">
                 <div id="content" class="article main col-lg-7">
-                <h2>{{ $totalHits }} search results for "{{ $keyphrase }}"</h2>
+                <h2 class="searchHeading">{{ $totalHits }} search results for "{{ $keyphrase }}"</h2>
 
                 <ul class="search-results-list">
                 @foreach ($results as $result)
                     <li><h4><a href="https://archive-laravel.test{{$result['url']}}">{{ $result['title'] }}</a></h4>
-                    {{$result['description']}}</li>
+                    {!! $result['description'] !!}</li>
                 @endforeach
                 </ul>
+                <p>{{ $results->links() }}</p>
                 </div>
                 <div id="Col2" class="col-lg-5">
                     @include('partials.sidebar')
