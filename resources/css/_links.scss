@@ -3,6 +3,21 @@
 	list-style-type: none;
 	text-align: center;
 	padding: 0 0 .75em;
+
+	li {
+		display: inline;
+		padding: 0;
+
+		&::before {
+			content: "|";
+			padding: 0 .5em;
+		}
+
+		&:first-child::before {
+			content: "";
+			padding: 0;
+		}
+	}
 }
 
 // sets the padding/spacing between each item within the unordered lists.
