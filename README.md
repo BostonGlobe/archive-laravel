@@ -35,7 +35,5 @@ Sample URLs to test:
   
 TODOs:
 1. Create logic to avaoid indexing duplicate stories, just index the one with longer content field.
-2. Paginate search results.
-3. Render 404s on styled template.
-4. Create a front page.
-5. Add ads with jQuery script.
+2. Create a front page.
+3. Add ads with jQuery script.
