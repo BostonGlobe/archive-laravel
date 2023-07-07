@@ -30,6 +30,15 @@
 	text-transform: uppercase;
 	margin-top: 20px;
 
+	ul {
+		list-style-type: none;
+		padding: 0;
+
+		li {
+			display: inline;
+		}
+	}
+
 	a {
 		text-decoration: none;
 	}
