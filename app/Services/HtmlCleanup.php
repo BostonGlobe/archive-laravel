@@ -31,6 +31,8 @@ class HtmlCleanup
         'tools',
         'informBox',
         'articleMoreLinksI',
+        'proquestBox',
+        'globeSub',
         'subCont',
         'mostPopular',
         'catHeader',
