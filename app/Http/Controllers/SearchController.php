@@ -21,8 +21,13 @@ class SearchController extends Controller
         ]);
 
         $keyphrase = $request->input('s');
-        $results = $this->elasticsearchService->search($keyphrase);
 
-        return view('searchresults', compact('results', 'keyphrase'));
+        $searchData = $this->elasticsearchService->search($keyphrase);
+
+        $results = collect($searchData['hits']['hits'])->pluck('_source');
+
+        $totalHits = $searchData['hits']['total']['value'];
+
+        return view('searchresults', compact('results', 'keyphrase', 'totalHits'));
     }
 }

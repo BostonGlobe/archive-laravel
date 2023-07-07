@@ -7,8 +7,6 @@ use Illuminate\Console\Command;
 use Elastic\Elasticsearch\ClientBuilder;
 use Illuminate\Support\Facades\File;
 use App\Services\HtmlCleanup;
-use Nette\Utils\Html;
-use PHPUnit\Event\Runtime\PHP;
 
 class IndexHtmlFiles extends Command
 {
@@ -24,8 +22,6 @@ class IndexHtmlFiles extends Command
             ->setHosts([env('ELASTICSEARCH_HOST')])
             ->build();
 
-
-
         // Test the client
         try {
             $info = $elasticsearch->info();
@@ -39,23 +35,20 @@ class IndexHtmlFiles extends Command
 
 
         File::lines($filepath)->each(function ($url) use ($elasticsearch) {
-
-            // $dirPath = HtmlCleanup::extractDirPath($url);
-
+            $url = trim($url);
             // Prepare the search query to check if the file has already been indexed
             $params = [
                 'index' => env('ELASTICSEARCH_INDEX'),
                 'body' => [
                     'query' => [
                         'match' => [
-                            'path.keyword' => $url
+                            'url.keyword' => $url
                         ]
                     ]
                 ]
             ];
 
             $response = $elasticsearch->search($params);
-
             if (($response['hits']['total']['value'] > 0)) {
                 $this->info('Already indexed ' . $url);
                 return;
@@ -63,10 +56,11 @@ class IndexHtmlFiles extends Command
                 $html = @file_get_contents('https://archive.boston.com/' . $url, false, null, 0, 170000);
 
                 // Convert all special characters to utf-8
-                $html = mb_convert_encoding($html, 'HTML-ENTITIES', 'UTF-8');
+                $html = iconv('ISO-8859-1', 'UTF-8//TRANSLIT', $html);
+
 
                 // Create a new document
-                $doc = new DOMDocument('1.0', 'utf-8');
+                $doc = new DOMDocument('1.0', 'UTF-8');
 
                 // Turn off some errors
                 libxml_use_internal_errors(true);
@@ -89,7 +83,9 @@ class IndexHtmlFiles extends Command
 
                 // Extract the article text
                 $articleText = HtmlCleanup::extractArticleText($doc);
+
                 $contentLength = strlen(trim($articleText->textContent));
+
                 $this->info('Content length: ' . $contentLength);
 
                 if ($contentLength < 300) {

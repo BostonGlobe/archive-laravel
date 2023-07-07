@@ -9,7 +9,7 @@ class ArticleController extends Controller
 {
     public function show($path)
     {
-        $result = Article::fetchFormattedHtmlFile($path);
+        $result = Article::getArticleByUrl($path);
 
         if ($result === false) {
             abort(404);
