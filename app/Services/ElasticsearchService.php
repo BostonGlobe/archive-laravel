@@ -40,9 +40,20 @@ class ElasticsearchService
                 'from' => ($page - 1) * $size,
                 'size' => $size,
                 'query' => [
-                    'multi_match' => [
-                        'query' => $keyphrase,
-                        'fields' => ['title^2', 'content'],
+                    'function_score' => [
+                        'query' => [
+                            'multi_match' => [
+                                'query' => $keyphrase,
+                                'fields' => ['title^2', 'content'],
+                            ],
+                        ],
+                        "functions" => [
+                            [
+                            "filter" => [ "range" => [ "article_length" => [ "gt" => 1000 ] ] ],
+                            "weight" => 2
+                            ]
+                        ],
+                        "boost_mode" => "multiply"
                     ],
                 ],
             ],
@@ -51,6 +62,7 @@ class ElasticsearchService
         $response = $this->client->search($params);
         return $response;
     }
+
 
 
     /**
