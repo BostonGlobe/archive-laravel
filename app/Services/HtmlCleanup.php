@@ -52,10 +52,16 @@ class HtmlCleanup
         'share-tools-container',
         'padAll10',
         'commCtDiv',
+        'hideMe',
         'noDot',
         'blackNodot',
         'noDot',
         'toolsMain'
+    ];
+
+    private static array $ids_to_remove_for_excerpt = [
+        'articleHeader',
+        'headTools',
     ];
 
     /**
@@ -304,5 +310,15 @@ class HtmlCleanup
         }
 
         return null; // Return null if the URL doesn't have a valid path
+    }
+
+    /**
+     * Create a text-only version of the article, with no HTML, and less text.
+     *
+     * @param DOMDocument $doc
+     * @return DOMDocument
+     */
+    public static function prepareExtract($doc)
+    {
     }
 }

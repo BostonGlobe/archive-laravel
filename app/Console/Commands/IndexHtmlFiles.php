@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use DOMDocument;
+// use DOMXPath;
 use Illuminate\Console\Command;
 use Elastic\Elasticsearch\ClientBuilder;
 use Illuminate\Support\Facades\File;
@@ -58,7 +59,6 @@ class IndexHtmlFiles extends Command
                 // Convert all special characters to utf-8
                 $html = iconv('ISO-8859-1', 'UTF-8//TRANSLIT', $html);
 
-
                 // Create a new document
                 $doc = new DOMDocument('1.0', 'UTF-8');
 
@@ -89,10 +89,25 @@ class IndexHtmlFiles extends Command
                 $this->info('Content length: ' . $contentLength);
 
                 if ($contentLength < 300) {
-                    $this->info('Not enough content for ' . $url);
+                    $this->info('Not enough content to index ' . $url);
                     return;
                 }
                 $this->info('Indexing: ' . $url);
+
+                $htmlContent = $doc->saveHTML($articleText);
+
+                // // Strip all html tags from the content
+                // $xpath = new DOMXPath($doc);
+
+                // $nodes = $xpath->query('//body//text()');
+
+                // $strippedText = '';
+                // foreach ($nodes as $node) {
+                //     $strippedText .= $node->nodeValue;
+                // }
+
+                // truncate to 1000 characters
+                // $strippedText = substr($strippedText, 200, 1200);
 
                 $elasticsearch->index([
                     'index' => env('ELASTICSEARCH_INDEX'),
@@ -104,7 +119,8 @@ class IndexHtmlFiles extends Command
                         'author' => $author,
                         'section' => $section,
                         'article_length' => $contentLength,
-                        'content' => $doc->saveHTML($articleText),
+                        'content_strip_html' => '',
+                        'content' => $htmlContent,
                     ],
                 ]);
             }
