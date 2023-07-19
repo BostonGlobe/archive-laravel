@@ -15,7 +15,7 @@
                 <ul class="search-results-list">
                 @foreach ($results as $result)
                     <li><h4><a href="https://archive-laravel.test{{$result['url']}}">{{ $result['title'] }}</a></h4>
-                    {!! $result['description'] !!}</li>
+                    {!! $result['excerpt'] !!}</li>
                 @endforeach
                 </ul>
                 <p>{{ $results->links() }}</p>
