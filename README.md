@@ -21,7 +21,7 @@ To index files for ElasticSearch:
    /business/articles/2006/04/12/retail_giant_offers_staffing_data_on_women_minorities/index.html
    /business/articles/2006/04/12/skilling_says_he_didnt_rig_earnings/index.html
    /business/articles/2006/04/12/summer_gas_prices_likely_to_average_262_a_gallon/index.html
-3. Index with this command `php index:html {filepath}`
+3. Index with this command `php artisan index:html {filepath}`
 
 The site should be viewable at http://localhost/, or http://localhost:[port] if your container is mapped to a different port.
 

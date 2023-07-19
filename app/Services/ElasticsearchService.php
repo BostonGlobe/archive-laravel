@@ -47,13 +47,27 @@ class ElasticsearchService
                                 'fields' => ['title^2', 'content'],
                             ],
                         ],
-                        "functions" => [
+                        'functions' => [
                             [
-                            "filter" => [ "range" => [ "article_length" => [ "gt" => 1000 ] ] ],
-                            "weight" => 2
+                            'filter' => [ 'range' => [ 'article_length' => [ 'gt' => 1000 ] ] ],
+                            'weight' => 2
                             ]
                         ],
-                        "boost_mode" => "multiply"
+                        'boost_mode' => 'multiply'
+                    ],
+                ],
+                'fields' => ['title', 'url'],
+                'highlight' => [
+                    'pre_tags' => ['<strong>'],
+                    'post_tags' => ['</strong>'],
+                    'no_match_size' => 180,
+                    'fragment_size' => 180,
+                    'type' => 'plain',
+                    'number_of_fragments' => 2,
+                    'encoder' => 'html',
+                    'fields' => [
+                        'content_strip_html' => new \stdClass(),
+                        'content' => new \stdClass(),
                     ],
                 ],
             ],
