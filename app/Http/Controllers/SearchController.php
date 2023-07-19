@@ -1,56 +1,33 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Services\ElasticsearchService;
-use Illuminate\Pagination\LengthAwarePaginator;
+use App\Models\Search;
 
 class SearchController extends Controller
 {
-    protected $elasticsearchService;
+    protected $search;
 
-    public function __construct(ElasticsearchService $elasticsearchService)
+    public function __construct(Search $search)
     {
-        $this->elasticsearchService = $elasticsearchService;
+        $this->search = $search;
     }
 
-    public function search(Request $request)
+    public function search(Request $request) 
     {
+        $response = $this->search->doSearch($request->all());
 
-        $request->validate([
-            's' => 'required|max:255',
-            'page' => 'integer|min:1',
-            'size' => 'integer|min:1|max:50'
+        if (isset($response['errors'])) {
+            // Handle the error response, maybe redirect back with the errors.
+        }
+
+        return view('searchresults', [
+            'results' => $response['results'], 
+            'keyphrase' => $response['keyphrase'], 
+            'totalHits' => $response['totalHits']
         ]);
-
-        $keyphrase = $request->input('s');
-
-        $page = $request->input('page', 1);
-
-        $size = $request->input('size', 10);  // Default and maximum size to 10
-
-        $searchData = $this->elasticsearchService->search($keyphrase, $page, $size);
-
-        $results = collect($searchData['hits']['hits'])->pluck('_source');
-
-        $totalHits = $searchData['hits']['total']['value'];
-
-        // Manual pagination
-        $results = new LengthAwarePaginator(
-            $results,
-            $totalHits,
-            $size,
-            $page,
-            [
-                'path' => route('search'),
-                'query' => [
-                    's' => $keyphrase,
-                ]
-            ]
-        );
-        $results->appends(['s' => $keyphrase])->links();
-
-        return view('searchresults', compact('results', 'keyphrase', 'totalHits'));
     }
 }
