@@ -1,20 +1,26 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Article;
+use Illuminate\Support\Facades\View;
 
 class ArticleController extends Controller
 {
     public function show($path)
     {
-        $result = Article::getArticleByUrl($path);
+        $article = Article::getArticleByUrl($path);
 
-        if ($result === false) {
+        if ($article === false) {
             abort(404);
         }
 
-        return $result;
+        return View::make('article', [
+            'title' => $article['title'],
+            'content' => $article['content'],
+            'description' => $article['description']
+        ])->render();
     }
 }
