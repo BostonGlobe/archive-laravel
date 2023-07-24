@@ -43,6 +43,9 @@
 
 .mobileAd {
 	display: block;
+	max-height: 200px;
+	width: 100%;
+	object-fit: cover;
 
 	@include media-breakpoint-up(lg) {
 		display: none;
