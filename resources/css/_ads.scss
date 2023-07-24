@@ -14,10 +14,16 @@
 
 .bannerAdSlot {
 	margin: 0 auto 30px auto;
+	max-height: 180px;
+	width: 100%;
+	object-fit: cover;
 }
 
 .bannerAdSlot_Mobile {
 	margin: 0 auto 1em;
+	max-height: 120px;
+	width: 100%;
+	object-fit: cover;
 }
 
 .centralLeftAd+.story:before {
