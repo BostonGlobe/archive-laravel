@@ -12,7 +12,7 @@ To set up the project, run the following commands:
 1. `composer install`. This installs PHP dependencies.
 2. `docker compose up`. This sets up the containers that run the PHP. 
 3. `npm install`. This installs Bootstrap and Vite (CSS and JavaScript bundler).
-4. `npm run dev`. This will watch and compile the SASS. This requires Node V. 16 or greater.
+4. `npm run dev`. This will watch and compile the SASS. Requires Node V. 16 or greater.
 
 To index files for ElasticSearch:
 1. Open a Terminal in the project root.
@@ -34,6 +34,6 @@ Sample URLs to test:
 - https://archive-laravel.test/ae/books/articles/2006/08/08/rallies_riots_and_a_radical_response/index.html
   
 TODOs:
-1. Create logic to avaoid indexing duplicate stories, just index the one with longer content field.
+1. Create logic to avoid indexing duplicate stories, just index the one with longer content field.
 2. Create a front page.
 3. Add ads with jQuery script.
