@@ -1,11 +1,13 @@
 <?php
-declare(strict_types=1);
 
 /**
  * Search Model.
- * Returns a paginated collection of search results. 
+ * Returns a paginated collection of search results.
  * Each result contains an excerpt with the search terms highlighted.
  */
+
+declare(strict_types=1);
+
 namespace App\Models;
 
 use App\Services\ElasticsearchService;
@@ -21,7 +23,7 @@ class Search
         $this->elasticsearchService = $elasticsearchService;
     }
 
-    public function doSearch($requestParams) 
+    public function doSearch($requestParams)
     {
         // Validate the request parameters.
         $validator = Validator::make($requestParams, [
@@ -37,7 +39,7 @@ class Search
 
         // Get the keyphrase, page, and size from the request.
         $keyphrase = $requestParams['s'];
-        $page 	   = $requestParams['page'] ?? 1;
+        $page      = $requestParams['page'] ?? 1;
         $size = $requestParams['size'] ?? 10;
 
         // Search the index.
@@ -49,7 +51,7 @@ class Search
             $highlight = $searchData['hits']['hits'][$key]['highlight']['content'];
             $item['excerpt'] = '';
             foreach ($highlight as $fragment) {
-                $item['excerpt' ] .= $fragment . '&hellip; ';
+                $item['excerpt' ] .= strip_tags(html_entity_decode($fragment)) . '… ';
             }
             return $item;
         });

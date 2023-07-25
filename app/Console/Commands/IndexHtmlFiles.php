@@ -3,7 +3,6 @@
 namespace App\Console\Commands;
 
 use DOMDocument;
-// use DOMXPath;
 use Illuminate\Console\Command;
 use Elastic\Elasticsearch\ClientBuilder;
 use Illuminate\Support\Facades\File;
@@ -36,33 +35,35 @@ class IndexHtmlFiles extends Command
 
 
         File::lines($filepath)->each(function ($url) use ($elasticsearch) {
-            $url = trim($url);
-            // Prepare the search query to check if the file has already been indexed
+
+            // Prepare the search query to check if the file has already been indexed.
             $params = [
                 'index' => env('ELASTICSEARCH_INDEX'),
                 'body' => [
                     'query' => [
                         'match' => [
-                            'url.keyword' => $url
+                            'url.keyword' => trim($url)
                         ]
                     ]
                 ]
             ];
 
             $response = $elasticsearch->search($params);
+
+            // If the file has already been indexed, skip it.
             if (($response['hits']['total']['value'] > 0)) {
                 $this->info('Already indexed ' . $url);
                 return;
             } else {
                 $html = @file_get_contents('https://archive.boston.com/' . $url, false, null, 0, 170000);
 
-                // Convert all special characters to utf-8
-                $html = iconv('ISO-8859-1', 'UTF-8//TRANSLIT', $html);
+                // Convert all special characters to utf-8.
+                $html = iconv('ISO-8859-1', 'UTF-8//IGNORE', $html);
 
-                // Create a new document
+                // Create a new document.
                 $doc = new DOMDocument('1.0', 'UTF-8');
 
-                // Turn off some errors
+                // Turn off errors.
                 libxml_use_internal_errors(true);
 
                 // Load the content without adding enclosing html/body tags.
@@ -81,7 +82,7 @@ class IndexHtmlFiles extends Command
 
                 $section = HtmlCleanup::extractFirstDirectory($url);
 
-                // Extract the article text
+                // Extract the article text.
                 $articleText = HtmlCleanup::extractArticleText($doc);
 
                 $contentLength = strlen(trim($articleText->textContent));
@@ -96,19 +97,6 @@ class IndexHtmlFiles extends Command
 
                 $htmlContent = $doc->saveHTML($articleText);
 
-                // // Strip all html tags from the content
-                // $xpath = new DOMXPath($doc);
-
-                // $nodes = $xpath->query('//body//text()');
-
-                // $strippedText = '';
-                // foreach ($nodes as $node) {
-                //     $strippedText .= $node->nodeValue;
-                // }
-
-                // truncate to 1000 characters
-                // $strippedText = substr($strippedText, 200, 1200);
-
                 $elasticsearch->index([
                     'index' => env('ELASTICSEARCH_INDEX'),
                     'body' => [
@@ -119,7 +107,6 @@ class IndexHtmlFiles extends Command
                         'author' => $author,
                         'section' => $section,
                         'article_length' => $contentLength,
-                        'content_strip_html' => '',
                         'content' => $htmlContent,
                     ],
                 ]);
