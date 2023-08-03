@@ -60,6 +60,12 @@ class IndexHtmlFiles extends Command
                 // Convert all special characters to utf-8.
                 $html = iconv('ISO-8859-1', 'UTF-8//IGNORE', $html);
 
+                // If the html is empty, skip it.
+                if (empty($html)) {
+                    $this->info('Failed to load ' . $url);
+                    return;
+                }
+
                 // Create a new document.
                 $doc = new DOMDocument('1.0', 'UTF-8');
 
