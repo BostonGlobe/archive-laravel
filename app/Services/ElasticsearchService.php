@@ -60,13 +60,15 @@ class ElasticsearchService
                 'highlight' => [
                     'pre_tags' => ['<strong class="highlight">'],
                     'post_tags' => ['</strong>'],
-                    'no_match_size' => 180,
-                    'fragment_size' => 180,
+
                     'type' => 'plain',
                     'number_of_fragments' => 2,
                     'encoder' => 'html',
                     'fields' => [
-                        'content' => new \stdClass(),
+                        'content' => [
+                            'fragment_size' => 180,
+                            'no_match_size' => 180,
+                        ],
                     ],
                 ],
             ],

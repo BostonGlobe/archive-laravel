@@ -19,3 +19,12 @@
 .searchHeading {
 	margin-bottom: 1em;
 }
+
+.search-header {
+	margin-bottom: .3em;
+
+	@include media-breakpoint-up(sm) {
+		display: flex;
+		justify-content: space-between;
+	}
+}

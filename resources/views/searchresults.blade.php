@@ -15,8 +15,12 @@
                 <ul class="search-results-list">
                 @foreach ($results as $result)
                     <li class="search-result">
-                        <h4><a href="https://archive-laravel.test{{$result['url']}}">{{ $result['title'] }}</a></h4>
+                        <div class="search-header">
+                            <h4><a href="https://archive-laravel.test{{$result['url']}}">{{ $result['title'] }}</a></h4>
+                            <small class="meta">published in {{ $result['section'] }} on {{ $result['date'] }}</small>
+                        </div>
                         <p>{!! $result['excerpt'] !!}</p>
+                        <hr>
                     </li>
                 @endforeach
                 </ul>
