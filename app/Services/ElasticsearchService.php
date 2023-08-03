@@ -58,7 +58,7 @@ class ElasticsearchService
                 ],
                 'fields' => ['title', 'url'],
                 'highlight' => [
-                    'pre_tags' => ['<strong>'],
+                    'pre_tags' => ['<strong class="highlight">'],
                     'post_tags' => ['</strong>'],
                     'no_match_size' => 180,
                     'fragment_size' => 180,
@@ -66,7 +66,6 @@ class ElasticsearchService
                     'number_of_fragments' => 2,
                     'encoder' => 'html',
                     'fields' => [
-                        'content_strip_html' => new \stdClass(),
                         'content' => new \stdClass(),
                     ],
                 ],
