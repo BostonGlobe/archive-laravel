@@ -16,7 +16,7 @@ use App\Http\Controllers\ArticleController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('frontpage');
 });
 
 Route::get('/search', [SearchController::class, 'search'])->name('search');
