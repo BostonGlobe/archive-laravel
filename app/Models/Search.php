@@ -51,7 +51,7 @@ class Search
             $highlight = $searchData['hits']['hits'][$key]['highlight']['content'];
             $item['excerpt'] = '';
             foreach ($highlight as $fragment) {
-                $item['excerpt' ] .= strip_tags(html_entity_decode($fragment)) . '… ';
+                $item['excerpt' ] .= strip_tags(html_entity_decode($fragment), ['<strong>']) . '… ';
             }
             return $item;
         });
