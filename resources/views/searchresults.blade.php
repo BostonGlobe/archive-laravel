@@ -17,7 +17,7 @@
                     <li class="search-result">
                         <div class="search-header">
                             <h4><a href="https://archive-laravel.test{{$result['url']}}">{{ $result['title'] }}</a></h4>
-                            <small class="meta">published in {{ $result['section'] }} on {{ $result['date'] }}</small>
+                            <small class="meta">published in <span class="section">{{ $result['section'] }}</span> on {{ $result['date'] }}</small>
                         </div>
                         <p>{!! $result['excerpt'] !!}</p>
                         <hr>

@@ -64,9 +64,16 @@ class Search
                 $item['excerpt'] = substr(strip_tags(html_entity_decode($item['content'])), 0, 360) . '…';
             }
 
-            // Format the date.
-            $date = new \DateTime($item['date']);
-            $item['date'] = $date->format('M d, Y');
+            // Format the date, if it exists.
+            if (isset($item['date'])) {
+                $date = new \DateTime($item['date']);
+                $item['date'] = $date->format('M d, Y');
+            }
+
+            if ($item['section'] === 'ae') {
+                $item['section'] = 'Arts & Entertainment';
+            }
+
             return $item;
         });
 

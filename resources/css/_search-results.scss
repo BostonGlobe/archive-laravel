@@ -23,6 +23,10 @@
 .search-header {
 	margin-bottom: .3em;
 
+	.section {
+		text-transform: capitalize;
+	}
+
 	@include media-breakpoint-up(sm) {
 		display: flex;
 		justify-content: space-between;
