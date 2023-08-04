@@ -57,14 +57,34 @@ class IndexHtmlFiles extends Command
             } else {
                 $html = @file_get_contents('https://archive.boston.com/' . $url, false, null, 0, 170000);
 
-                // Convert all special characters to utf-8.
-                $html = iconv('ISO-8859-1', 'UTF-8//IGNORE', $html);
+                // check if the file exists
+                if ($html === false || empty($html)) {
+                    $this->info('Failed to load ' . $url);
+                    return;
+                }
 
-                // If the html is empty, skip it.
+                // check if the file uses the ISO-8859-1 encoding
+                $encoding = mb_detect_encoding($html, 'UTF-8, ISO-8859-1', true);
+
+                // mb_detect_encoding() is not reliable, so we'll supplement
+                // with a regex to look for common UTF-8 special chars.
+                if (preg_match('/[\xC0-\xDF][\x80-\xBF]|[\xE0-\xEF][\x80-\xBF]{2}|[\xF0-\xF7][\x80-\xBF]{3}/', $html)) {
+                    $encoding = 'UTF-8';
+                }
+
+                // Convert the encoding if it's not UTF-8.
+                if ($encoding !== 'UTF-8') {
+                    $html = mb_convert_encoding($html, 'UTF-8', $encoding);
+                }
+
+                // Sometimes the file is empty at this point.
                 if (empty($html)) {
                     $this->info('Failed to load ' . $url);
                     return;
                 }
+
+                // Convert all special characters to utf-8.
+                $html_decoded = mb_convert_encoding($html, 'HTML-ENTITIES', 'UTF-8');
 
                 // Create a new document.
                 $doc = new DOMDocument('1.0', 'UTF-8');
@@ -74,7 +94,7 @@ class IndexHtmlFiles extends Command
 
                 // Load the content without adding enclosing html/body tags.
                 // Also no doctype declaration.
-                $doc->loadHTML($html, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+                $doc->loadHTML($html_decoded, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
 
                 $title = HtmlCleanup::extractTitle($doc) ?? 'Boston.com';
 
