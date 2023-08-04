@@ -35,6 +35,11 @@ class IndexHtmlFiles extends Command
 
 
         File::lines($filepath)->each(function ($url) use ($elasticsearch) {
+            // if url does not end with index.html, skip it
+            if (substr($url, -10) !== 'index.html') {
+                $this->info('Skipping ' . $url);
+                return;
+            }
 
             // Prepare the search query to check if the file has already been indexed.
             $params = [
@@ -64,16 +69,17 @@ class IndexHtmlFiles extends Command
                 }
 
                 // check if the file uses the ISO-8859-1 encoding
-                $encoding = mb_detect_encoding($html, 'UTF-8, ISO-8859-1', true);
+                $encoding = mb_detect_encoding($html, 'UTF-8, ISO-8859-1, WINDOWS-1252', true);
 
-                // mb_detect_encoding() is not reliable, so we'll supplement
-                // with a regex to look for common UTF-8 special chars.
+                // mb_detect_encoding() is not totally reliable, so we'll
+                // supplement with a regex to look for common UTF-8 special chars.
                 if (preg_match('/[\xC0-\xDF][\x80-\xBF]|[\xE0-\xEF][\x80-\xBF]{2}|[\xF0-\xF7][\x80-\xBF]{3}/', $html)) {
                     $encoding = 'UTF-8';
                 }
 
                 // Convert the encoding if it's not UTF-8.
                 if ($encoding !== 'UTF-8') {
+                    // $html = iconv($encoding, 'UTF-8', $html);
                     $html = mb_convert_encoding($html, 'UTF-8', $encoding);
                 }
 
@@ -101,6 +107,8 @@ class IndexHtmlFiles extends Command
                 $description = HtmlCleanup::extractDescription($doc);
 
                 $date = HtmlCleanup::extractDateFromString($url);
+
+                $doc = HtmlCleanup::cleanH1Tag($doc);
 
                 $doc = HtmlCleanup::cleanupHtml($doc);
 

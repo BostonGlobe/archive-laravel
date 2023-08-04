@@ -56,12 +56,8 @@ class HtmlCleanup
         'noDot',
         'blackNodot',
         'noDot',
-        'toolsMain'
-    ];
-
-    private static array $ids_to_remove_for_excerpt = [
-        'articleHeader',
-        'headTools',
+        'toolsMain',
+        'emailLinks'
     ];
 
     /**
@@ -320,5 +316,30 @@ class HtmlCleanup
      */
     public static function prepareExtract($doc)
     {
+    }
+
+    /**
+     * Select the H1 tag in a DOMDocument. Strip HTML tags from the H1, preserving the H1's text content.
+     * @param DOMDocument $doc
+     * @return DOMDocument
+     */
+    public static function cleanH1Tag($doc)
+    {
+        $h1 = $doc->getElementsByTagName('h1')->item(0);
+        if ($h1) {
+            // Get the text content of the H1 tag
+            $h1Text = $h1->textContent;
+
+            // Clear the H1 element
+            while ($h1->hasChildNodes()) {
+                $h1->removeChild($h1->firstChild);
+            }
+
+            // Append the text content into the H1 element
+            $h1->appendChild($doc->createTextNode($h1Text));
+
+            return $doc;
+        }
+        return $doc;
     }
 }
