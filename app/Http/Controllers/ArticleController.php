@@ -13,7 +13,7 @@ class ArticleController extends Controller
     {
         $article = Article::getArticleByUrl($path);
 
-        if ($article === false) {
+        if (!$article) {
             abort(404);
         }
 
