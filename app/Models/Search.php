@@ -44,24 +44,32 @@ class Search
 
         // Search the index.
         $searchData = $this->elasticsearchService->search($keyphrase, $page, $size);
+
         $results = collect($searchData['hits']['hits'])->pluck('_source');
 
         // Create an excerpt for each result, with the search terms highlighted.
         $results->transform(function ($item, $key) use ($searchData) {
-            $highlight = $searchData['hits']['hits'][$key]['highlight']['content'];
-            $item['excerpt'] = '';
-            foreach ($highlight as $fragment) {
-                // Remove paragraphs because they if removed by strip_tags, they ended up with no space between sentences.
-                $fragment = preg_replace('#<p[^>]*>#i', ' ', html_entity_decode($fragment));
-                $fragment = str_replace('</p>', ' ', html_entity_decode($fragment));
+            // dd($searchData['hits']['hits'][$key]);
+            $highlight = isset($searchData['hits']['hits'][$key]['highlight']) ?
+                $searchData['hits']['hits'][$key]['highlight']['content'] : null;
 
-                // Remove all tags except <strong>.
-                $item['excerpt' ] .= strip_tags(html_entity_decode($fragment), ['<strong>']) . '… ';
+            $item['excerpt'] = '';
+
+            if ($highlight) {
+                foreach ($highlight as $fragment) {
+                    // Remove paragraphs because they if removed by strip_tags, they ended up with no space between sentences.
+                    $fragment = preg_replace('#<p[^>]*>#i', ' ', html_entity_decode($fragment));
+                    $fragment = str_replace('</p>', ' ', html_entity_decode($fragment));
+
+                    // Remove all tags except <strong>.
+                    $item['excerpt' ] .= strip_tags(html_entity_decode($fragment), ['<strong>']) . '… ';
+                }
             }
+
 
             // if the excerpt is less than 200 characters, create a new excerpt from the content.
             if (strlen($item['excerpt']) < 200) {
-                $item['excerpt'] = substr(strip_tags(html_entity_decode($item['content'])), 0, 360) . '…';
+                $item['excerpt'] = substr(strip_tags(html_entity_decode($item['content'])), 0, 300) . '…';
             }
 
             // Format the date, if it exists.
