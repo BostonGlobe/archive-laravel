@@ -10,7 +10,7 @@
             @include('partials.nav')
             <div class="row">
                 <div id="content" class="article main col-lg-7">
-                <h2 class="searchHeading">{{ $totalHits }} search results for "{{ $keyphrase }}"</h2>
+                <h2 class="searchHeading">{{ $totalHits }} search results for <span class="highlight">{{ $keyphrase }}</span></h2>
 
                 <ul class="search-results-list">
                 @foreach ($results as $result)
