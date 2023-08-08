@@ -45,6 +45,7 @@ class HtmlCleanup
         'rightAd',
         'moreList',
         'nonSub',
+        'nextIn'
     ];
 
     private static array $classes_to_remove = [
