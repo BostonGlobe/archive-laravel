@@ -44,6 +44,13 @@ class CreateElasticSearchIndex extends Command
                                 'type' => 'custom',
                                 'char_filter' => ['my_html_stripper'],
                                 'tokenizer' => 'standard'
+                            ],
+                            'english_stop' => [
+                                'type' => 'standard',
+                                'stopwords' => '_english_'
+                            ],
+                            'english_phrase' => [
+                                'type' => 'standard'
                             ]
                         ]
                     ]
@@ -64,13 +71,17 @@ class CreateElasticSearchIndex extends Command
                         ],
                         'content' => [
                             'type' => 'text',
+                            'analyzer' => 'english_stop',
                             'fields' => [
+                                'phrase' => [
+                                    'type' => 'text',
+                                    'analyzer' => 'english_phrase'
+                                ],
                                 'keyword' => [
                                     'type' => 'keyword',
                                     'ignore_above' => 256
                                 ]
                             ],
-                            'analyzer' => 'sentence',
                             'term_vector' => 'with_positions_offsets',
                             'store' => true
                         ],
