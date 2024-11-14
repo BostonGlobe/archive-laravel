@@ -7,6 +7,7 @@ use Elastic\Elasticsearch\ClientBuilder;
 
 class CreateElasticSearchIndex extends Command
 {
+    // In Docker container: docker compose exec laravel php artisan create:esindex
     protected $signature = 'create:esindex';
 
     protected $description = 'Create an Elasticsearch index';

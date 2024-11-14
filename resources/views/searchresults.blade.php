@@ -16,7 +16,7 @@
                 @foreach ($results as $result)
                     <li class="search-result">
                         <div class="search-header">
-                            <h4><a href="https://archive-laravel.test{{$result['url']}}">{{ $result['title'] }}</a></h4>
+                            <h4><a href="{{ url($result['url']) }}">{{ $result['title'] }}</a></h4>
                             <small class="meta">published in <span class="section">{{ $result['section'] }}</span> on {{ $result['date'] }}</small>
                         </div>
                         <p>{!! $result['excerpt'] !!}</p>

@@ -112,8 +112,9 @@ class ElasticsearchService
         if ($response->getStatusCode() !== 200) {
             return [];
         }
-
-        return collect($response['hits']['hits'])->pluck('_source');
+        $article = collect($response['hits']['hits'])->pluck('_source');
+        
+        return $article;
     }
 
     /**
