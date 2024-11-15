@@ -2,34 +2,10 @@
 
 @import '../../node_modules/bootstrap/scss/bootstrap';
 
+@import './base';
 @import './ads';
 @import './images';
 @import './links';
 @import './navbar';
 @import './articles';
 @import './search-results';
-
-.header {
-	margin-top: .5em;
-	display: flex;
-	justify-content: space-between;
-	flex-direction: column;
-
-	@include media-breakpoint-up(sm) {
-		flex-direction: row;
-	}
-}
-
-.hide {
-	display: none;
-}
-
-@include media-breakpoint-up(lg) {
-	.content-divider {
-		border-color: transparent;
-	}
-}
-
-.small {
-	font-size: .8em;
-}

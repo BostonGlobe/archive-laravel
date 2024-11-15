@@ -8,6 +8,11 @@ img {
 		width: 125px;
 		margin-left: 1em;
 	}
+	&.mt-image-left {
+		float: left;
+		margin-top: 5px;
+		margin-right: 1em;
+	}
 }
 
 #articleBodyImageH,
