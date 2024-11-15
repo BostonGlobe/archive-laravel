@@ -45,7 +45,14 @@ class HtmlCleanup
         'rightAd',
         'moreList',
         'nonSub',
-        'nextIn'
+        'nextIn',
+        'outBrain',
+        'articleComments',
+        'commLoginForm',
+        'Comments_Container1wrap',
+        'pPolicy',
+        'wait',
+        'adContainer',
     ];
 
     private static array $classes_to_remove = [
@@ -101,36 +108,60 @@ class HtmlCleanup
     {
         // Remove all script tags from the document.
         $scripts = $doc->getElementsByTagName('script');
+        
         // Loop through the DOMNodeList backwards.
         while ($script = $scripts->item(0)) {
             $script->parentNode->removeChild($script);
         }
+
         // Remove all form tags in the article text, using the same method as above.
         $forms = $doc->getElementsByTagName('form');
         while ($form = $forms->item(0)) {
             $form->parentNode->removeChild($form);
         }
 
-        foreach (self::$ids_to_remove as $item) {
-            self::removeItem($doc, $item);
-        }
+        // Get all child elements
+        $childElements = $doc->getElementsByTagName('*');
 
-        $childElements = $doc->getElementsByTagName('div'); // get all child elements
+        // Loop through the elements backwards
+        for ($i = $childElements->length - 1; $i >= 0; $i--) {
+            $child = $childElements->item($i);
 
-        foreach ($childElements as $child) {
+            // Remove elements with specific classes
             foreach (self::$classes_to_remove as $class) {
                 if ($child->hasAttribute('class') && $child->getAttribute('class') == $class) {
-                    // found the child element with the specified class
-                    $child->parentNode->removeChild($child); // remove it
+                    if ($child->parentNode) {
+                        $child->parentNode->removeChild($child);
+                    }
+                    break; // Move to the next child element
                 }
             }
 
-            // We already removed this, but it was often placed twice in the HTML.
-            if ($child->hasAttribute('id') && $child->getAttribute('id') == 'sharetoolContainer') {
-                $child->parentNode->removeChild($child); // remove it
+            // Remove elements with specific IDs
+            foreach (self::$ids_to_remove as $id) {
+                if ($child->hasAttribute('id') && $child->getAttribute('id') == $id) {
+                    if ($child->parentNode) {
+                        $child->parentNode->removeChild($child);
+                    }
+                    break; // Move to the next child element
+                }
             }
         }
 
+        return $doc;
+    }
+
+    /**
+     * Remove inline styles from the article text.
+     * @param DOMDocument $doc
+     * @return DOMDocument
+     */
+    public static function removeInlineStyles($doc)
+    {
+        $elements = $doc->getElementsByTagName('*');
+        foreach ($elements as $element) {
+            $element->removeAttribute('style');
+        }
         return $doc;
     }
 
