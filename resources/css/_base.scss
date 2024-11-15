@@ -1,0 +1,37 @@
+.header {
+	margin-top: .5em;
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+
+	@include media-breakpoint-up(sm) {
+		flex-direction: row;
+	}
+}
+
+.hide {
+	display: none;
+}
+
+@include media-breakpoint-up(lg) {
+	.content-divider {
+		border-color: transparent;
+	}
+}
+
+.small {
+	font-size: .8em;
+}
+
+.cf {
+	&:before,
+	&:after {
+		content: " ";
+		display: table;
+	}
+
+	&:after {
+		clear: both;
+	}
+	margin-bottom: 30px;
+}
