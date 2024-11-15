@@ -36,7 +36,7 @@ class IndexHtmlFiles extends Command
 
         File::lines($filepath)->each(function ($url) use ($elasticsearch) {
             // if url does not end with index.html, skip it
-            if (substr($url, -10) !== 'index.html') {
+            if (substr($url, -5) !== '.html') {
                 $this->info('Skipping ' . $url);
                 return;
             }
@@ -115,6 +115,9 @@ class IndexHtmlFiles extends Command
                 $author = HtmlCleanup::extractAuthor($doc);
 
                 $section = HtmlCleanup::extractFirstDirectory($url);
+
+                // Remove inline styles from the entire document.
+                $doc = HtmlCleanup::removeInlineStyles($doc);
 
                 // Extract the article text.
                 $articleText = HtmlCleanup::extractArticleText($doc);
